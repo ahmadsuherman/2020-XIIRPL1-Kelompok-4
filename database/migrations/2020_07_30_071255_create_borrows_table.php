@@ -14,14 +14,12 @@ class CreateBorrowsTable extends Migration
     public function up()
     {
         Schema::create('borrows', function (Blueprint $table) {
-             $table->bigIncrements('id');
-            $table->integer('id_student')->unsigned();
-            $table->integer('id_item')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('id_student')->unsigned();
+            $table->bigInteger('id_item')->unsigned();
             $table->integer('total_borrow');
             $table->timestamps();
 
-            $table->foreign('id_student')->references('id')->on('students')->onDelete('restrict');
-            $table->foreign('id_item')->references('id')->on('borrows')->onDelete('restrict');
             $table->engine = 'InnoDB';
         });
     }

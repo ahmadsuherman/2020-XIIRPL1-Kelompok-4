@@ -4,12 +4,12 @@
  
 <div class="row">
     <div class="col-md-12">
-        <h4>{{ $title }}</h4>
+        <h4>ini list item</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                    <a href="{{url('/daftar-barang/add')}}" class="btn btn-sm btn-flat btn-primary btn-primary"></i> Tambah Barang</button></a>
+                    <a href="{{url('/items/create')}}" class="btn btn-sm btn-flat btn-primary btn-primary"></i> Tambah Barang</button></a>
 
                 </p>
             </div>
@@ -26,14 +26,14 @@
                				</tr>
                			</thead>
                			<tbody>
-               				@foreach($data as $e=>$dt)
+               				@foreach($items as $e=>$item)
                				<tr>
                					<td>{{$e+1}}</td>
-               					<td>{{$dt->item_name}}</td>
-               					<td>{{$dt->total_item}}</td>
-               					<td>{{$dt->stock_item}}</td>
+               					<td>{{$item->item_name}}</td>
+               					<td>{{$item->total_item}}</td>
+               					<td>{{$item->stock_item}}</td>
                					<td>
-                            	<div style="width:60px"><a href="" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                            	<div style="width:60px"><a href="/borrow/{{$item->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
                             	<button href="" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button></div>           
                					</td>
                				</tr>

@@ -4,7 +4,7 @@
  
 <div class="row">
     <div class="col-md-12">
-        <h4>{{ $title }}</h4>
+        <h4>add item</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>
@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class="box-body">
-            <form role="form" action="{{ ('/daftar-barang/store')}}" method="post">
+            <form role="form" action="{{ ('/items')}}" method="post">
             @csrf
               <div class="box-body">
                 <div class="form-group">

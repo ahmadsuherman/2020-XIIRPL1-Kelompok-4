@@ -12,7 +12,10 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    //tugas PBO
+    //method di controller
+    public function index() //ini method controller
     {
         $items = Item::get();
         return view('Item.index',compact('items'));

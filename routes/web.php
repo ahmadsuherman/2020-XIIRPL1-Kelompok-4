@@ -27,7 +27,11 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){ // M
 	Route::post('/items','ItemController@store'); // '/items' adalah url dengan method post yang mengarahkan admin/siswa ke function create yang ada di ItemController 
 	Route::get('/Items/{id}/edit','ItemController@edit'); // '/items/{id}/edit' adalah url dengan method get yang mengarahkan admin/siswa ke function edit yang ada di ItemController 
 	Route::post('/Items/{id}/update','ItemController@update'); // '/items/{id}/update' adalah url dengan method post yang mengarahkan admin/siswa ke function update yang ada di ItemController 
+
 	Route::delete('/Items/{id}','ItemController@destroy'); // '/items/{id}' adalah url dengan method delete yang mengarahkan admin/siswa ke function delete yang ada di ItemController 
+
+	Route::delete('/items/{id}','ItemController@destroy'); // '/items/{id}' adalah url dengan method delete yang mengarahkan admin/siswa ke function delete yang ada di ItemController 
+
 	Route::get('/Borrows','BorrowController@index'); // '/borrows' adalah url dengan method get yang mengarahkan admin/siswa ke function index yang ada di BorrowController 
 	Route::get('/Borrows/{id}','BorrowController@PinjamBarang'); // '/borrows/{id}' adalah url dengan method get yang mengarahkan admin/siswa ke function PinjamBarang yang ada di BorrowController 
 });
@@ -41,8 +45,12 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){ // Middlew
 });
 Auth::routes(); // yaitu class helper yang nge generate semua route untuk authentikasi
 
+
 Route::get('/home', 'HomeController@index')->name('home'); // "/home" adalah url setelah login dengan method get yang mengarahkan admin/user,siswa ke function index yang ada di HomeController
 
 Route::get('/Borrow_item','BorrowitemController@index');
 Route::get('/Borrow_item/{id}/borrow','BorrowitemController@borrow'); 
 Route::post('/Borrow_item/{id}/save','BorrowitemController@save'); 
+
+Route::get('/home', 'HomeController@index')->name('home'); // "/home" adalah url setelah login dengan method get yang mengarahkan admin/user,siswa ke function index yang ada di HomeController
+

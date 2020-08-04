@@ -109,8 +109,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-                        
+    {                       
         try {
             Item::where('id',$id)->delete();
 
@@ -122,5 +121,4 @@ class ItemController extends Controller
         }
         return redirect('items');
      }
-    
 }

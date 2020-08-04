@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -47,6 +48,7 @@ class ItemController extends Controller
         $items->total_item = $total;
         $items->stock_item= $total;
         $items->save();
+        \Session::flash('sukses','data berhasil di Tambahkan');
 
 
         return redirect('/items');
@@ -70,9 +72,10 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($id)
     {
-        //
+        $items = Item::find($id);
+        return view('Item.edit',compact('items'));
     }
 
     /**
@@ -82,9 +85,21 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $id)
     {
-        //
+        $items = Item::find($id);
+        $items->item_name = $request->item_name;
+        $items->total_item = $request->total_item;
+
+        $total=$request->input('total_item');
+        $items->total_item = $total;
+        $items->stock_item= $total;
+        $items->save();
+        \Session::flash('sukses','data berhasil di edit');
+
+
+        return redirect('/items');
+
     }
 
     /**
@@ -95,16 +110,17 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-    //     try {
-    //         Item::where('id',$id)->delete();
+                        
+        try {
+            Item::where('id',$id)->delete();
 
-    //         \Session::flash('sukses','data berhasil dihapus');
+            \Session::flash('sukses','data berhasil dihapus');
             
-    //     } catch (Exception $e) {
-    //         \Session::flash('gagal',$e->getMessage());
+        } catch (Exception $e) {
+            \Session::flash('gagal',$e->getMessage());
 
-    //     }
-    //     return redirect('items');
+        }
+        return redirect('items');
      }
     
 }

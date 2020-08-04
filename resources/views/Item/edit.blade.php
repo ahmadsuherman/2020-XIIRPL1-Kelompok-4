@@ -12,16 +12,16 @@
                 </p>
             </div>
             <div class="box-body">
-            <form role="form" action="" method="post">
+            <form role="form" action="/Items/{{$items->id}}/update" method="post">
             @csrf
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">NAMA BARANG</label>
-                  <input type="text" name="item_name" class="form-control" value="{{$item_name}}" placeholder="Nama Barang">
+                  <input type="text" name="item_name" class="form-control" readonly="" value="{{$items->item_name}}" placeholder="Nama Barang">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">JUMLAH BARANG</label>
-                  <input type="number" name="total_item" class="form-control" value="{{$total_item}}" placeholder="Jumlah Barang">
+                  <input type="number" name="total_item" class="form-control" value="{{$items->total_item}}" placeholder="Jumlah Barang">
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
               </div>

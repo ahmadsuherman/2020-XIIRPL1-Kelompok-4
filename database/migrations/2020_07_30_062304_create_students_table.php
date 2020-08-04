@@ -15,7 +15,9 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',50);
+            $table->string('full_name',50);
+            $table->integer('user_id');
+            $table->string('class',20);    
             $table->string('gender',20);
             $table->timestamps();
             $table->engine = 'InnoDB';

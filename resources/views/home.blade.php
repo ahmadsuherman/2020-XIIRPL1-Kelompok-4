@@ -13,17 +13,10 @@
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
                 </p>
             </div>
-            <div class="box-body">
-            
-             <center><h4>Nama Anggota Kelompok</h4>
-              <h4>Ahmad Suherman</h4>
-              <h4>Evi Novianti</h4>
-              <h4>Malay Cahya</h4>
-              <h4>Rudi Firmansyah</h4>
-              <h4>Santi Sintiawati</h4></center>
-
-            </div>
-        </div>
+             <div class="box-body">
+              hii
+           </div> 
+      </div>
     </div>
 </div>
  

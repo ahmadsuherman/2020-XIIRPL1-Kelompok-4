@@ -95,16 +95,16 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-    //     try {
-    //         Item::where('id',$id)->delete();
+     //    try {
+     //        Item::where('id',$id)->delete();
 
-    //         \Session::flash('sukses','data berhasil dihapus');
+     //        \Session::flash('sukses','data berhasil dihapus');
             
-    //     } catch (Exception $e) {
-    //         \Session::flash('gagal',$e->getMessage());
+     //    } catch (Exception $e) {
+     //        \Session::flash('gagal',$e->getMessage());
 
-    //     }
-    //     return redirect('items');
-     }
+     //    }
+     //    return redirect('items');
+     // }
     
 }

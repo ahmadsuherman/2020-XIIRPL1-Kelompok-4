@@ -34,7 +34,7 @@
                					<td>{{$item->stock_item}}</td>
                					<td>
                             	<div style="width:60px"><a href="/borrow/{{$item->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
-                            	<button href="" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button></div>           
+                            	<button href="/item/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button></div>           
                					</td>
                				</tr>
                				@endforeach

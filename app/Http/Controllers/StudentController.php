@@ -35,4 +35,5 @@ class StudentController extends Controller
         $siswa = Student::create($request->all());
         return redirect('/Students');
     }
+    
 }

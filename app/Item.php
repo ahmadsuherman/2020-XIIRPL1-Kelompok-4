@@ -9,5 +9,5 @@ class Item extends Model
 //tugas PBO
 //ini modelnya
 {
-    protected $guarded = [];
+    protected $fillable = ['item_name','total_item','stock_item'];
 }

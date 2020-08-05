@@ -12,32 +12,24 @@
                 </p>
             </div>
             <div class="box-body">
-            <form role="form" action="" method="post">
+            <form role="form" action="/Borrow_item/{{ $items->id }}/save" method="post">
             @csrf
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">NAMA LENGKAP</label>
-                  <input type="text" name="full_name" class="form-control" placeholder="Nama Lengkap">
+                  <label for="exampleInputEmail1">NAMA BARANG</label>
+                  <input type="text" name="item_name" readonly="" value="{{$items->item_name}}" class="form-control">
                 </div>
 
+              
                 <div class="form-group">
-                  <label>KELAS</label>
-                    <select class="form-control">
-                      <option name="class" value="volvo">XI RPL</option>
-                      <option name="class" value="saab">XI MM 1</option>
-                      <option name="class" value="volvo">XI MM 2</option>
-                      <option name="class" value="saab">XII RPL 1</option>
-                      <option name="class" value="volvo">XII RPL 2</option>
-                      <option name="class" value="saab">XII MM</option> 
-                    </select>
+                  <label for="exampleInputEmail1">STOK BARANG</label>
+                  <input type="text" name="stock_item" readonly="" value="{{$items->stock_item}}" class="form-control" >
                 </div>
 
+         
                 <div class="form-group">
-                  <label>Jenis Kelamin</label>
-                    <select class="form-control">
-                      <option name="gender" value="volvo">Laki-Laki</option>
-                      <option name="gender" value="saab">Perempuan</option>
-                    </select>
+                  <label for="exampleInputEmail1">JUMLAH PINJAAM</label>
+                  <input type="number" name="total_borrow" class="form-control" placeholder="Jumlah Barang">
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Pinjam</button>

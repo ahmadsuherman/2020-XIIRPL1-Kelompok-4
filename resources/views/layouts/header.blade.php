@@ -32,27 +32,23 @@
               <span class="label label-warning">0</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have reservasi</li>
+              <li class="header">Notification !</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
                     <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> tes
+                      <i class="fa fa-warning text-yellow"></i> Tidak ada pemberitahuan Boss
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="{{ url('jadwal-reservasi') }}">View all</a></li>
+              <li class="footer"><a href="{{ url('#') }}">View all</a></li>
             </ul>
           </li>
 
       <li class="dropdown user user-menu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <img src="" class="user-image" alt="User Image">
-          <span class="hidden-xs">{{\Auth::user()->name}}</span>
-        </a>
-        <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
           <!-- User image -->
           <li class="user-header">
             <img src="" class="img-circle" alt="User Image">

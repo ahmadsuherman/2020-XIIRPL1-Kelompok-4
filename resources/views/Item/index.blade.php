@@ -9,7 +9,9 @@
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                    <a href="{{url('/items/create')}}" class="btn btn-sm btn-flat btn-primary btn-primary"></i> Tambah Barang</button></a>
+                    <button type="button" class="btn btn-sm btn-flat btn-primary btn-primary" data-toggle="modal" data-target="#modal-tambah">
+                      Tambah Barang
+                    </button>
 
                 </p>
             </div>
@@ -33,7 +35,7 @@
                					<td>{{$item->total_item}}</td>
                					<td>{{$item->stock_item}}</td>
                					<td>
-                          	<div style="width:60px"><a href="/Items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                         	<div style="width:60px"><a href="#" class="btn btn-warning btn-xs btn-edit" id="edit" data-toggle="modal" data-target="#modal-warning"><i class="fa fa-pencil-square-o"></i></a>
                           	<button href="/Items/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>           
                					</td>
                				</tr>
@@ -41,6 +43,71 @@
                			</tbody>
                			
                		</table>
+
+<div class="modal modal-info fade" id="modal-tambah">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Tambah Barang</h4>
+              </div>
+              <div class="modal-body">
+               <form role="form" action="{{ ('/items')}}" method="post">
+            @csrf
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">NAMA BARANG</label>
+                  <input type="text" name="item_name" class="form-control" placeholder="Nama Barang">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">JUMLAH BARANG</label>
+                  <input type="number" name="total_item" class="form-control" placeholder="Jumlah Barang">
+                </div>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+              </div>
+            </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div class="modal modal-warning fade" id="modal-warning">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Warning Modal</h4>
+              </div>
+              <div class="modal-body">
+
+            <form role="form" action="/Items/{{$item->id}}/update" method="post">
+            @csrf
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">NAMA BARANG</label>
+                  <input type="text" name="item_name" class="form-control" readonly="" value="{{$item->item_name}}" placeholder="Nama Barang">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">JUMLAH BARANG</label>
+                  <input type="number" name="total_item" class="form-control" value="{{$item->total_item}}" placeholder="Jumlah Barang">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </form>
+              </div>
+           </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+                  
                </div>
             </div>
         </div>
@@ -48,6 +115,10 @@
 </div>
  
 @endsection
+
+
+
+
  
 @section('scripts')
  

@@ -17,24 +17,28 @@
                			<thead>
                				<tr>
                					<th>#</th>
-               					<th>ID SISWA</th>
-               					<th>ID BARANG</th>
-               					<th>TOTAL PINJAM</th>
+               					<th>Nama Siswa</th>
+               					<th>Nama Barang</th>
+               					<th>Jumlah Pinjamn</th>
                					<th>ACTION</th>
                				</tr>
                			</thead>
                			<tbody>
-               				@foreach($borrows as $e=>$borrow)
+                    @foreach($tampil as $e=>$a)
+                    @if(auth()->user()->id == $a->id_student)
                				<tr>
-               					<td>{{$e+1}}</td>
-               					<td>{{$borrow->id_student}}</td>
-               					<td>{{$borrow->id_item}}</td>
-               					<td>{{$borrow->total_borrow}}</td>
+                        <td>{{$e+1}}</td>
+               					<td>{{$a->name}}</td>
+               					<td>{{$a->item_name}}</td>
+               					<td>{{$a->total_borrow}}</td>
                					<td>
                             	<div style="width:60px"><a href="#" class="btn btn-warning">Kembalikan<i class="fa fa-pencil-square-o"></i></a>
-                            	<button href="" class="btn btn-warning btn-hapus" id="delete">Hapus<i class="fa fa-trash-o"></i></button></div>           
-               					</td>
+                          @if(auth()->user()->role == 'admin')
+                              <button href="" class="btn btn-warning btn-hapus" id="delete">Hapus<i class="fa fa-trash-o"></i></button></div>           
+               					  @endif
+                        </td>
                				</tr>
+                    @endif
                				@endforeach
                			</tbody>
                			

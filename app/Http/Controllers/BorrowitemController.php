@@ -27,6 +27,7 @@ class BorrowitemController extends Controller
         //     'jml_pinjam' => 'required',
         // ]);
         // dd($request);
+
         $item = Item::whereId($id)->first();
 
         $stock = $item->stock_item;
@@ -46,7 +47,7 @@ class BorrowitemController extends Controller
             $item->save();
 
 
-            return redirect('/Borrow')->with('sukses','data berhasil');
+            return redirect('/Borrows')->with('sukses','data berhasil');
         } else {
             return redirect('/home')->with(['error'=>'Peminjaman Tidak Berhasil']);;
         }

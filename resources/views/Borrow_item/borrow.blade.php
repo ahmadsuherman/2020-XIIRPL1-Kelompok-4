@@ -29,7 +29,7 @@
          
                 <div class="form-group">
                   <label for="exampleInputEmail1">JUMLAH PINJAAM</label>
-                  <input type="number" name="total_borrow" class="form-control" placeholder="Jumlah Barang">
+                  <input type="number" name="total_borrow" class="form-control" placeholder="Jumlah Barang" min="1">
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Pinjam</button>

@@ -8,10 +8,15 @@ use App\Item;
 
 class BorrowController extends Controller
 {
-   	public function index(){
-
-   		 $borrows = Borrow::get();
-   		return view('Borrow.index',compact('borrows'));
+   	public function index()
+   	{
+   	$tampil= Borrow::join('items' , 'borrows.id_item' , '=' , 'items.id')
+        ->join('users' , 'borrows.id_student' ,'=', 'users.id')
+        ->get();
+        return view('Borrow.index', ['tampil' => $tampil]);
+   		//  $borrows = Borrow::all();
+   		//  $items = Item::all();
+   		// return view('Borrow.index',['borrows' => $borrows, 'items' => $items]);
    	}
 
    	public function PinjamBarang($id){

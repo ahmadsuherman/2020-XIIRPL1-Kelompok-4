@@ -8,13 +8,13 @@ class Student extends Model
 {
     protected $fillable=['full_name','user_id','class','gender'];
 
-    public function borrows()
-    {
-    	return $this->belongsToMany('Borrow');
-    }
+ //    public function borrows()
+ //    {
+ //    	return $this->belongsToMany('Borrow');
+ //    }
 
-   	public function users()
-	{
-		return $this->belongsToMany('User');
-	}    
+ //   	public function users()
+	// {
+	// 	return $this->belongsToMany('User');
+	// }    
 }

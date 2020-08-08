@@ -25,20 +25,20 @@
                			</thead>
                			<tbody>
                     @foreach($tampil as $e=>$a)
-                    @if(auth()->user()->id == $a->id_student)
+                     @if(auth()->user()->id == $a->id_student)
                				<tr>
                         <td>{{$e+1}}</td>
                					<td>{{$a->name}}</td>
                					<td>{{$a->item_name}}</td>
                					<td>{{$a->total_borrow}}</td>
                					<td>
-                            	<div style="width:60px"><a href="#" class="btn btn-warning">Kembalikan<i class="fa fa-pencil-square-o"></i></a>
+                            	<div style="width:60px"><a href="{{('/restore')}}" class="btn btn-warning">Kembalikan<i class="fa fa-pencil-square-o"></i></a>
                           @if(auth()->user()->role == 'admin')
                               <button href="" class="btn btn-warning btn-hapus" id="delete">Hapus<i class="fa fa-trash-o"></i></button></div>           
                					  @endif
                         </td>
                				</tr>
-                    @endif
+                      @endif
                				@endforeach
                			</tbody>
                			

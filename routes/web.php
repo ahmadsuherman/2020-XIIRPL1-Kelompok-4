@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome'); // '/' adalah url yang mengarahkan aktor ke view welcome
+Route::get('/', function () { //pengarahan url pertama saat membuka project
+    return view('welcome'); // '/' mengembalikan/mengambil tampilan welcome yang ada dalam folder view
 });
 
 Route::get('/logout', function () {  // menampilkan url logout
@@ -34,6 +34,14 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){ // M
 
 	Route::get('/Borrows','BorrowController@index'); // '/borrows' adalah url dengan method get yang mengarahkan admin/siswa ke function index yang ada di BorrowController 
 	Route::get('/Borrows/{id}','BorrowController@PinjamBarang'); // '/borrows/{id}' adalah url dengan method get yang mengarahkan admin/siswa ke function PinjamBarang yang ada di BorrowController 
+	Route::get('/home', 'HomeController@index')->name('home'); // "/home" adalah url setelah login dengan method get yang mengarahkan admin/user,siswa ke function index yang ada di HomeController
+
+	Route::get('/Borrow_item','BorrowitemController@index'); // '/borrow_item' adalah url dengan method get yang mengarahkan admin/siswa ke function index yang ada di BorrowitemController 
+	Route::get('/Borrow_item/{id}/borrow','BorrowitemController@borrow'); // '/Borrow_item/{id}/borrow' adalah url dengan method get yang mengarahkan admin/siswa ke function borrow yang ada di BorrowitemController 
+	Route::post('/Borrow_item/{id}/save','BorrowitemController@save'); // '/borrows/{id}/save' adalah url dengan method post yang mengarahkan admin/siswa ke function save yang ada di BorrowitemController 
+
+	Route::get('/home', 'HomeController@index')->name('home'); // "/home" adalah url setelah login dengan method get yang mengarahkan admin/user,siswa ke function index yang ada di HomeController
+
 });
 
 Route::group(['middleware' => ['auth','checkRole:admin']],function(){ // Middleware berfungsi sebagai menyediakan mekanisme penyaringan HTTP request yang masuk ke aplikasi anda atau dengan kata lain setiap kali ada request yang masuk maka akan difilter oleh Middleware.
@@ -46,11 +54,5 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){ // Middlew
 Auth::routes(); // yaitu class helper yang nge generate semua route untuk authentikasi
 
 
-Route::get('/home', 'HomeController@index')->name('home'); // "/home" adalah url setelah login dengan method get yang mengarahkan admin/user,siswa ke function index yang ada di HomeController
 
-Route::get('/Borrow_item','BorrowitemController@index');
-Route::get('/Borrow_item/{id}/borrow','BorrowitemController@borrow'); 
-Route::post('/Borrow_item/{id}/save','BorrowitemController@save'); 
-
-Route::get('/home', 'HomeController@index')->name('home'); // "/home" adalah url setelah login dengan method get yang mengarahkan admin/user,siswa ke function index yang ada di HomeController
 

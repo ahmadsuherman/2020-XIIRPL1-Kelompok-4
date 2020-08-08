@@ -16,11 +16,11 @@ class ItemController extends Controller
 
     //tugas PBO
     //method di controller
-    public function index() //ini method controller
-    {
-        $items = Item::get();
-        return view('Item.index',compact('items'));
-    }
+        public function index() //ini method controller
+        {
+            $items = Item::get();
+            return view('Item.index',compact('items'));
+        }
 
     /**
      * Show the form for creating a new resource.

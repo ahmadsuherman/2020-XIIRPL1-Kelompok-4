@@ -35,7 +35,7 @@
                					<td>{{$item->total_item}}</td>
                					<td>{{$item->stock_item}}</td>
                					<td>
-                         	<div style="width:60px"><a href="#" class="btn btn-warning btn-xs btn-edit" id="edit" data-toggle="modal" data-target="#modal-warning"><i class="fa fa-pencil-square-o"></i></a>
+                         	<div style="width:60px"><a href="/Items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit" ><i class="fa fa-pencil-square-o"></i></a>
                           	<button href="/Items/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>           
                					</td>
                				</tr>
@@ -49,7 +49,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
+                  <span aria-hidden="true">&times;</span></button-->
                 <h4 class="modal-title">Tambah Barang</h4>
               </div>
               <div class="modal-body">

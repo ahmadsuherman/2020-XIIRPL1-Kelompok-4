@@ -23,4 +23,7 @@ class BorrowController extends Controller
         $items= Item::whereId($id)->first();
         return view('Borrow.listborrow');
     }
+    public function restore(){ 
+    	return view('Borrow.restore');
+    }
 }

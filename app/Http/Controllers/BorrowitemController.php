@@ -34,7 +34,8 @@ class BorrowitemController extends Controller
         $tot_borrow = $request->input('total_borrow');
 
         if ($stock == 0){
-            return 'Stok habis';
+            \Session::flash('gagal','Stok Sudah Habis');
+            return redirect('/Borrow_item');
         } elseif($stock > $tot_borrow or $stock==$tot_borrow){
 
             $borrow = new Borrow(); // input data baru
@@ -44,12 +45,42 @@ class BorrowitemController extends Controller
             $borrow->save();
 
             $item->stock_item -=$tot_borrow;
+            $borrow->status = 0;
+
             $item->save();
 
 
             return redirect('/Borrows')->with('sukses','data berhasil');
         } else {
-            return redirect('/home')->with(['error'=>'Peminjaman Tidak Berhasil']);;
+            \Session::flash('gagal','Jumlah Pinjam Lebih Dari Stok');
+            return redirect('/Borrow_item')->with(['error'=>'Peminjaman Tidak Berhasil']);;
         }
+    }
+
+    public function verified($id){
+        Borrow::where('id',$id)->update(['status' => 1]);
+
+        return redirect('/Borrows');
+
+    }
+    public function restore($id){
+        $dt = Borrow::find($id);
+        $id_item = $dt->id_item;
+        $tot_borrow = $dt->total_borrow;
+
+        $items = Item::find($id);
+        $now = $items->stock_item;
+
+        $stock_restore = $now + $tot_borrow;
+
+        Borrow::where('id',$id)->update([
+            'status'=>2
+        ]);
+
+        Item::where('id',$id_item)->update([
+            'stock_item' => $stock_restore
+        ]);
+        \Session::flash('sukses','Data Berhasil Di Kembalikan');
+        return redirect('/Borrows');
     }
 }

@@ -40,10 +40,16 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+         $this->validate($request,[
+            'item_name' => 'required',
+            'total_item' => 'required'
+            
+        ]);
+
         $items = new Item;
         $items->item_name = $request->item_name;
         $items->total_item = $request->total_item;
-
+        $items->licensor = $request->licensor;  
         $total=$request->input('total_item');
         $items->total_item = $total;
         $items->stock_item= $total;
@@ -61,9 +67,10 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($id)
     {
-        //
+        $item = Item::find($id);
+        return view('Item.show',compact('item'));
     }
 
     /**
@@ -93,8 +100,8 @@ class ItemController extends Controller
 
         $total=$request->input('total_item');
         $items->total_item = $total;
-        $items->stock_item= $total;
-        $items->save();
+        $items->stock_item == $total;
+        $items->update();
         \Session::flash('sukses','data berhasil di edit');
 
 

@@ -5,9 +5,13 @@ use App\Item;
 use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Borrow extends Model
 {
+	//use SoftDeletes;
+
+   //protected $dates = ['deleted_at'];
    protected $fillable=['id_student','id_item','total_borrow'];
 
    // public function students()
@@ -19,6 +23,8 @@ class Borrow extends Model
    // {
    // 		return $this->belongsToMany(Item::class);
    // }
+
+
 
    
 }

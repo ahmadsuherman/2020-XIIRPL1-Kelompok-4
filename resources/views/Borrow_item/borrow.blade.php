@@ -26,10 +26,15 @@
                   <input type="text" name="stock_item" readonly="" value="{{$items->stock_item}}" class="form-control" >
                 </div>
 
+                <div class="form-group">
+                  <label for="exampleInputEmail1">ATAS IZIN</label>
+                  <input type="text" name="licensor" readonly="" value="{{$items->licensor}}" class="form-control" >
+                </div>
+
          
                 <div class="form-group">
                   <label for="exampleInputEmail1">JUMLAH PINJAAM</label>
-                  <input type="number" name="total_borrow" class="form-control" placeholder="Jumlah Barang" min="1">
+                  <input type="number" name="total_borrow" class="form-control" placeholder="Jumlah Barang" required="" min="1">
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Pinjam</button>

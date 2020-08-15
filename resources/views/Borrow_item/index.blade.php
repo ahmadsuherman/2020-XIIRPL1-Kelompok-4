@@ -33,7 +33,8 @@
                					<td>{{$item->stock_item}}</td>
                					<td>
                             	
-                            	<a href="/Borrow_item/{{$item->id}}/borrow" class="btn btn-warning btn-xs btn-warning">PINJAM</i></a>           
+                             
+                              <a href ="/Borrow_item/{{$item->id}}/borrow" type="button" class="btn btn-info">PINJAM</a>        
                					</td>
                				</tr>
                				@endforeach

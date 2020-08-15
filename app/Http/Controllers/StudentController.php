@@ -19,6 +19,13 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'full_name' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'class' => 'required'
+            
+        ]);
     	// dd($request);
     	//ini untuk insert ke table user
         $user = new User;
@@ -33,7 +40,22 @@ class StudentController extends Controller
         //insert ke table siswa
         $request->request->add(['user_id' => $user->id]);
         $siswa = Student::create($request->all());
+
+        \Session::flash('sukses','Data Siswa Berhasil di tambahkan');
         return redirect('/Students');
     }
+    public function destroy($id)
+    {                       
+        try {
+            Student::where('id',$id)->delete();
+
+            \Session::flash('sukses','data berhasil dihapus');
+            
+        } catch (Exception $e) {
+            \Session::flash('gagal',$e->getMessage());
+
+        }
+        return redirect('/Students');
+     }
     
 }

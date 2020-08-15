@@ -9,7 +9,9 @@
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                <a href="/Students/create" class="btn btn-success">Tambah</a>
+                    <button type="button" class="btn btn-sm btn-flat btn-primary btn-success" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i>  Tambah Siswa
+                    </button>
+                    
                 </p>
             </div>
             <div class="box-body">
@@ -17,7 +19,7 @@
                		<table class="table myTable">
                			<thead>
                				<tr>
-               					<th>#</th>
+               					<th>NO</th>
                					<th>NAMA</th>
                					<th>JENIS KELAMIN</th>
                         <th>KELAS</th>
@@ -32,14 +34,79 @@
                					<td>{{$student->gender}}</td>
                					<td>{{$student->class}}</td>
                					<td>
-                            	<div style="width:60px"><a href="" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
-                            	<button href="" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button></div>           
+                            	<button href="/Students/{{$student->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button></div>           
                					</td>
                				</tr>
                				@endforeach
                			</tbody>
                			
                		</table>
+
+                  <div class="modal modal-info fade" id="modal-tambah">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span></button>
+                        <center><h4 class="modal-title">Tambah Siswa</h4></center>
+                      </div>
+                      <div class="modal-body">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                       <form role="form" action="{{ ('/Students')}}" method="post">
+                      @csrf
+                      <div class="box-body">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">NAMA SISWA</label>
+                          <input type="text" name="full_name" class="form-control" placeholder="Nama Siswa">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">EMAIL</label>
+                          <input type="email" name="email" class="form-control" placeholder="Masukan Email">
+                        </div>
+
+                        <div class="form-group">
+                        <label>JENIS KELAMIN</label>
+                        <select class="form-control" name="gender">
+                          <option>Laki Laki</option>
+                          <option>Perempuan</option>
+                          
+                          
+                        </select>
+
+                        <div class="form-group">
+                        <label>KELAS</label>
+                        <select class="form-control" name="class">
+                          <option>X RPL</option>
+                          <option>X MM 2</option>
+                          <option>XI RPL</option>
+                          <option>XI MM 1</option>
+                          <option>XI MM 2</option>
+                          <option>XII RPL 1</option>
+                          <option>XII RPL 2</option>
+                          <option>XII MM</option>
+                          
+                        </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                      </div>
+                    </form>
+                      </div>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+
                </div>
             </div>
         </div>

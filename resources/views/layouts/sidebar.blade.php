@@ -17,7 +17,7 @@
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{url('items')}}"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
             <li><a href="{{url('Borrows')}}"><i class="fa fa-circle-o"></i> Daftar Peminjam </a></li>
-            <li><a href="{{url('restore')}}"><i class="fa fa-circle-o"></i> Daftar Pengembalian</a></li>
+            <li><a href="{{url('/restore/trash')}}"><i class="fa fa-circle-o"></i> Daftar Pengembalian</a></li>
 
           </ul>
         </li>
@@ -26,8 +26,10 @@
         @endif
 
         <li class="menu-sidebar"><a href="{{ url('/Borrow_item') }}"><span class="fa  fa-pencil-square-o"></span> Pinjam Barang</span></a></li>
-        
-
+        @if(auth()->user()->role == 'siswa')
+         <li class="menu-sidebar"><a href="{{url('Borrows')}}"><span class="fa  fa-pencil-square-o"></span> Daftar Peminjam</span></a></li>
+        @endif
+        <li class="header"></li>
         <li class="menu-sidebar"><a href="{{ url('/logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</span></a></li>
 
 

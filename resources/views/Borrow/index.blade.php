@@ -13,36 +13,72 @@
             </div>
             <div class="box-body">
                <div class="table-responsive">
-               		<table class="table myTable">
-               			<thead>
-               				<tr>
-               					<th>#</th>
-               					<th>Nama Siswa</th>
-               					<th>Nama Barang</th>
-               					<th>Jumlah Pinjamn</th>
-               					<th>ACTION</th>
-               				</tr>
-               			</thead>
-               			<tbody>
+                  <table class="table myTable">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Nama Siswa</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah Pinjam</th>
+                        <th>Status</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Perizinan</th>
+
+                        <th>ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                     @foreach($tampil as $e=>$a)
-                     @if(auth()->user()->id == $a->id_student)
-               				<tr>
+                    
+                      <tr>
                         <td>{{$e+1}}</td>
-               					<td>{{$a->name}}</td>
-               					<td>{{$a->item_name}}</td>
-               					<td>{{$a->total_borrow}}</td>
-               					<td>
-                            	<div style="width:60px"><a href="{{('/restore')}}" class="btn btn-warning">Kembalikan<i class="fa fa-pencil-square-o"></i></a>
+                        <td>{{$a->name}}</td>
+                        <td>{{$a->item_name}}</td>
+                        <td>{{$a->total_borrow}}</td>
+
+                        @if($a->status == 0)
+                        <td><label class="label label-warning">Menunggu Verifikasi</label></td>
+                        @endif
+
+                        @if($a->status == 1)
+                        <td><label class="label label-success">Sedang Di Pinjam</label></td>
+                        @endif
+
+                        @if($a->status == 2)
+                        <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
+                        @endif
+
+                        <td>{{$a->created_at}}</td>
+                        <td>{{$a->licensor}}</td>
+                        
+                        <td>
+                            @if(auth()->user()->role == 'admin')
+                              @if($a->status == NULL)
+                              <a href="Borrows/{{$a->id}}" class="btn btn-primary">Verifikasi</a>
+
+
+
+                              @elseif($a->status == 1)
+                               <a href="restore/{{$a->id}}" class="btn btn-warning">Kembalikan</a>
+                               @else
+                               @endif
+                            @endif
+
+                            @if(auth()->user()->role == 'siswa' AND $a->status == 1)
+                            <a href="restore/{{$a->id}}" class="btn btn-warning">Kembalikan</a>
+                            @endif
+
+
                           @if(auth()->user()->role == 'admin')
-                              <button href="" class="btn btn-warning btn-hapus" id="delete">Hapus<i class="fa fa-trash-o"></i></button></div>           
-               					  @endif
+                              <button href="/Borrow/{{$a->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
+                          @endif
                         </td>
-               				</tr>
-                      @endif
-               				@endforeach
-               			</tbody>
-               			
-               		</table>
+                      </tr>
+                     
+                      @endforeach
+                    </tbody>
+                    
+                  </table>
                </div>
             </div>
         </div>

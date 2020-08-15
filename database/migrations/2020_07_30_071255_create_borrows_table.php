@@ -18,6 +18,8 @@ class CreateBorrowsTable extends Migration
             $table->integer('id_student');
             $table->integer('id_item');
             $table->integer('total_borrow');
+            $table->integer('status')->nullable();
+            
             $table->timestamps();
 
             $table->engine = 'InnoDB';

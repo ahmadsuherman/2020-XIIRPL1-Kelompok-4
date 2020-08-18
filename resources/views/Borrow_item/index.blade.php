@@ -17,7 +17,8 @@
                		<table class="table myTable">
                			<thead>
                				<tr>
-               					<th>#</th>
+                       
+               					<th>NO</th>
                					<th>NAMA BARANG</th>
                					<th>JUMLAH BARANG</th>
                					<th>STOK BARANG</th>
@@ -27,6 +28,7 @@
                			<tbody>
                				@foreach($items as $e=>$item)
                				<tr>
+                       
                					<td>{{$e+1}}</td>
                					<td>{{$item->item_name}}</td>
                					<td>{{$item->total_item}}</td>

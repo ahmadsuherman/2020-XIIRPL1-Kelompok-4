@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class="box-body">
-            <form role="form" action="/Items/{{$items->id}}/update" method="post">
+            <form role="form" action="/items/{{$items->id}}/update" method="post">
             @csrf
               <div class="box-body">
                 <div class="form-group">

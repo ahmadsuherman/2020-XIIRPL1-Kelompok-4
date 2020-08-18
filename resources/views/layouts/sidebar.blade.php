@@ -8,7 +8,7 @@
         @if(auth()->user()->role == 'admin')
 
         <li class="active treeview">
-          <a href="#">
+          <a href="">
             <i class="fa fa-th-large"></i> <span>Barang</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -17,7 +17,7 @@
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{url('items')}}"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
             <li><a href="{{url('Borrows')}}"><i class="fa fa-circle-o"></i> Daftar Peminjam </a></li>
-            <li><a href="{{url('/restore/trash')}}"><i class="fa fa-circle-o"></i> Daftar Pengembalian</a></li>
+            <li><a href="{{url('/restore')}}"><i class="fa fa-circle-o"></i> Daftar Pengembalian</a></li>
 
           </ul>
         </li>

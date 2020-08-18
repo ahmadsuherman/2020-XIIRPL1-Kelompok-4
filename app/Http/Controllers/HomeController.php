@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Borrow;
+use App\Item;
+
 
 class HomeController extends Controller
 {
@@ -23,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title = 'ini title home';
-        return view('home',compact('title'));
+        $borrow = Borrow::count();
+        $item = Item::count();
+                
+        return view('home',compact('borrow','item'));
     }
 }

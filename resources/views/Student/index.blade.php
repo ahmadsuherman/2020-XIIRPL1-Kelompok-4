@@ -4,7 +4,7 @@
  
 <div class="row">
     <div class="col-md-12">
-        <h4>ini list item</h4>
+        <h4>Daftar Siswa</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>

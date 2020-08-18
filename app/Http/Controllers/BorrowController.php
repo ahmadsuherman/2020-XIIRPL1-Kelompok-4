@@ -40,4 +40,19 @@ class BorrowController extends Controller
         }
         return redirect('Borrows');
      }
+    public function history(){
+         $data= Borrow::join('items' , 'borrows.id_item' , '=' , 'items.id')
+          ->join('users' , 'borrows.id_student' ,'=', 'users.id')->select(
+          'items.*',
+          'users.*',
+          'borrows.*',
+          'borrows.id as id')->get();
+
+     
+         return view('Borrow.history', ['data' => $data]);
+    }
+
+    public function restore(){
+
+    }
 }

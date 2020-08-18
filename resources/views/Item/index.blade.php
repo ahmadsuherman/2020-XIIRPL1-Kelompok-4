@@ -19,7 +19,7 @@
                		<table class="table myTable">
                			<thead>
                				<tr>
-               					<th>#</th>
+               					<th>NO</th>
                					<th>NAMA BARANG</th>
                					<th>JUMLAH BARANG</th>
                					<th>STOK BARANG</th>
@@ -36,7 +36,7 @@
                					<td>{{$item->stock_item}}</td>
                         <td>{{$item->licensor}}</td>
                					<td>
-                         	<a href="/Items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit" ><i class="fa fa-pencil-square-o"></i></a>
+                         	<a href="/items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit" ><i class="fa fa-pencil-square-o"></i></a>
                           <button href="/items/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
                            <!-- <a href="Items/show/{{$item->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-eye"></i></a> -->
 

@@ -25,20 +25,21 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/items','ItemController@index');
 	Route::get('/items/create','ItemController@create'); 
 	Route::post('/items','ItemController@store'); 
+	Route::get('/items/show/{id}','ItemController@show');
 
-	Route::get('/Items/show/{id}','ItemController@show');
-
-	Route::get('/Items/{id}/edit','ItemController@edit'); 
-	Route::post('/Items/{id}/update','ItemController@update');  
+	Route::get('/items/{id}/edit','ItemController@edit'); 
+	Route::post('/items/{id}/update','ItemController@update');  
 	Route::delete('/Items/{id}','ItemController@destroy'); 
 	Route::delete('/items/{id}','ItemController@destroy'); 
+
 	Route::get('/Borrows','BorrowController@index'); 
 	Route::get('/Borrows/{id}','BorrowController@borrowItem'); 
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::delete('/Borrow/{id}','BorrowController@destroy');
+
 	Route::get('/Borrow_item','BorrowitemController@index'); 
 	Route::get('/Borrow_item/{id}/borrow','BorrowitemController@borrow');  
 	Route::post('/Borrow_item/{id}/save','BorrowitemController@save'); 
-	Route::delete('/Borrow/{id}','BorrowController@destroy');
+	
 
 	Route::get('/home', 'HomeController@index')->name('home'); 
 
@@ -57,7 +58,9 @@ Auth::routes();
 
 Route::get('/restore/{id}','BorrowitemController@restore');
 
-Route::get('/restore','BorrowitemController@history');
+Route::get('/restore','BorrowController@history');
 
 Route::get('/Borrows/{id}','BorrowitemController@verified');
+
+// Route::get('/history/{id}','BorrowController@history');
 

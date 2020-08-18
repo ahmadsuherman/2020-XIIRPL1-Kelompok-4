@@ -58,7 +58,9 @@ class BorrowitemController extends Controller
     }
 
     public function verified($id){
-        Borrow::where('id',$id)->update(['status' => 1]);
+        Borrow::where('id',$id)->update([
+            'status' => 1
+        ]);
 
         return redirect('/Borrows');
 
@@ -83,4 +85,5 @@ class BorrowitemController extends Controller
         \Session::flash('sukses','Data Berhasil Di Kembalikan');
         return redirect('/Borrows');
     }
+    
 }

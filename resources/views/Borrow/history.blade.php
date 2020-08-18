@@ -4,7 +4,7 @@
  
 <div class="row">
     <div class="col-md-12">
-        <h4>Daftar Peminjaman</h4>
+        <h4>Daftar Pengembalian</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>
@@ -17,27 +17,21 @@
                     <thead>
                       <tr>
                         <th>NO</th>
-                        <!-- @if(auth()->user()->role == 'admin')
-                        <th>Details</th>
-                        @endif -->
+                       
                         <th>Nama Siswa</th>
                         <th>Nama Barang</th>
                         <th>Jumlah Pinjam</th>
                         <th>Status</th>
                         <th>Tanggal Pinjam</th>
                         <th>Perizinan</th>
-
-                        <th>ACTION</th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($tampil as $e=>$a)
-                    @if(auth()->user()->id == $a->id_student OR auth()->user()->role == 'admin')
+                    @foreach($data as $e=>$a)
+                   
                       <tr>
                         <td>{{$e+1}}</td>
-                        <!-- @if(auth()->user()->role == 'admin')
-                        <td><a href="{{ url('history/'.$a->id_student) }}"><i class="fa fa-eye"></i></a></td>
-                        @endif -->
+
                         <td>{{$a->name}}</td>
                         <td>{{$a->item_name}}</td>
                         <td>{{$a->total_borrow}}</td>
@@ -57,30 +51,9 @@
                         <td>{{$a->created_at}}</td>
                         <td>{{$a->licensor}}</td>
                         
-                        <td>
-                            @if(auth()->user()->role == 'admin')
-                              @if($a->status == NULL)
-                              <a href="Borrows/{{$a->id}}" class="btn btn-primary">Verifikasi</a>
-
-
-
-                              @elseif($a->status == 1)
-                               <a href="restore/{{$a->id}}" class="btn btn-warning">Kembalikan</a>
-                               @else
-                               @endif
-                            @endif
-
-                            @if(auth()->user()->role == 'siswa' AND $a->status == 1)
-                            <a href="restore/{{$a->id}}" class="btn btn-warning">Kembalikan</a>
-                            @endif
-
-
-                          @if(auth()->user()->role == 'admin')
-                              <button href="/Borrow/{{$a->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
-                          @endif
-                        </td>
+                      
                       </tr>
-                     @endif
+                   
                       @endforeach
                     </tbody>
                     

@@ -2,23 +2,17 @@
  
 @section('content')
  
- <body>
+ <body onload="window.print();">
 <div class="row">
     <div class="col-md-12">
-        <h4>Daftar Pengembalian</h4>
+        <b><center><i><h2>Daftar Peminaman Barang</h2></i></center></b>
         <div class="box box-warning">
             <div class="box-header">
-                <p>
-                    <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                   <!--  <a target="_blank" href="{{ url('Borrows/pdf/') }}" class="btn btn-sm btn-flat btn-success"><i class="fa fa-download"></i> Export PDF</a> -->
-                    <a href="{{ url('/print') }}" target="_blank" class="btn btn-sm btn-flat btn-default"><i class="fa fa-print"></i> Print</a>
-
-                    
-                </p>
+                
             </div>
             <div class="box-body">
                <div class="table-responsive">
-                  <table class="table myTable">
+                  <table class="table">
                     <thead>
                       <tr>
                         <th>NO</th>
@@ -28,7 +22,7 @@
                         <th>Jumlah Pinjam</th>
                         <th>Status</th>
                         <th>Tanggal Pinjam</th>
-                     
+                        <th>Tanggal Pengembalian</th>
                         
                         <th>Perizinan</th>
                       </tr>
@@ -56,7 +50,7 @@
                         @endif
 
                         <td>{{$a->created_at}}</td>
-                       
+                        <td>{{$a->updated_at}}</td>
                         
                         <td>{{$a->licensor}}</td>
                         
@@ -71,6 +65,22 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-4">
+        <center>
+            <p>Mengetahui,</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            Enjang Suryana<br>
+            (Staf Tata Usaha)
+        </center>
+        
+    </div>
+    
 </div>
 
 </body> 

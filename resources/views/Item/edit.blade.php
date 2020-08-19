@@ -23,6 +23,11 @@
                   <label for="exampleInputPassword1">JUMLAH BARANG</label>
                   <input type="number" name="total_item" class="form-control" value="{{$items->total_item}}" placeholder="Jumlah Barang">
                 </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">STOK BARANG</label>
+                  <input type="number" name="stock_item" class="form-control" value="{{$items->stock_item}}" placeholder="Jumlah Barang">
+                </div>
+                
                 <button type="submit" class="btn btn-primary">Update</button>
               </div>
             </form>

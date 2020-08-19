@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Borrow;
 use App\Item;
 
+
 class BorrowController extends Controller
 {
    	public function index()
@@ -52,7 +53,16 @@ class BorrowController extends Controller
          return view('Borrow.history', ['data' => $data]);
     }
 
-    public function restore(){
+    public function print(){
+      $data= Borrow::join('items' , 'borrows.id_item' , '=' , 'items.id')
+          ->join('users' , 'borrows.id_student' ,'=', 'users.id')->select(
+          'items.*',
+          'users.*',
+          'borrows.*',
+          'borrows.id as id')->get();
 
+     
+         return view('Borrow.print', ['data' => $data]);
     }
+
 }

@@ -17,5 +17,15 @@ class usersTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123123123')
             ]);
+    
+        DB::table('users')->insert([
+            'role'  => 'siswa',
+            'name' => 'Santi',
+            'email' => 'santi@gmail.com',
+            'password' => bcrypt('12341234')
+            ]);
+
     }
+
 }
+

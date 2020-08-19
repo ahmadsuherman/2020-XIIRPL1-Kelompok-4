@@ -31,11 +31,11 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>INVENTORY BARANG SMK MAHAPUTRA</b></a>
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg">Silahkan Register Terlebih Dahulu</p>
 
     <form action="{{ route('register') }}" method="POST">
     @csrf
@@ -57,29 +57,20 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> I agree to the <a href="#">terms</a>
+        <div class="checkbox icheck">
+            <label><i>Sudah punya akun?</i>
+              <a href="{{ route('login') }}"> Login
             </label>
           </div>
+         
         </div>
         <!-- /.col -->
-        <div class="col-xs-4">
+        <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
-
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a>
-    </div>
-
-    <a href="login.html" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->
 </div>

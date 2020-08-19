@@ -97,10 +97,8 @@ class ItemController extends Controller
         $items = Item::find($id);
         $items->item_name = $request->item_name;
         $items->total_item = $request->total_item;
-
-        $total=$request->input('total_item');
-        $items->total_item = $total;
-        $items->stock_item == $total;
+        $items->stock_item = $request->stock_item;
+        
         $items->update();
         \Session::flash('sukses','data berhasil di edit');
 

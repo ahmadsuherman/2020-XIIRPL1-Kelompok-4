@@ -7,7 +7,7 @@
         
         @if(auth()->user()->role == 'admin')
 
-        <li class="active treeview">
+        <li class="treeview menu">
           <a href="">
             <i class="fa fa-th-large"></i> <span>Barang</span>
             <span class="pull-right-container">
@@ -22,15 +22,16 @@
           </ul>
         </li>
 
-        <li class="menu-sidebar"><a href="{{ url('/Students') }}"><span class="fa fa-user"></span> Daftar Siswa</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/Students') }}"><i class="fa fa-user"></i> <span>Daftar siswa</span></a></li>
         @endif
 
-        <li class="menu-sidebar"><a href="{{ url('/Borrow_item') }}"><span class="fa  fa-pencil-square-o"></span> Pinjam Barang</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/Borrow_item') }}"><i class="fa  fa-pencil-square-o"></i><span> Pinjam Barang</span></a></li>
         @if(auth()->user()->role == 'siswa')
-         <li class="menu-sidebar"><a href="{{url('Borrows')}}"><span class="fa  fa-pencil-square-o"></span> Daftar Peminjam</span></a></li>
+         <li class="menu-sidebar"><a href="{{url('Borrows')}}"><i class="fa  fa-pencil-square-o"></i> <span> Daftar Peminjam</span></a></li>
         @endif
+
         <li class="header"></li>
-        <li class="menu-sidebar"><a href="{{ url('/logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/logout')}}"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li>
 
 
       </ul>

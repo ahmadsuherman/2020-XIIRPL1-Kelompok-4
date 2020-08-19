@@ -53,14 +53,19 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::delete('/Students/{id}','StudentController@destroy');
 
 });
+
 Auth::routes();
 
 
 Route::get('/restore/{id}','BorrowitemController@restore');
 
 Route::get('/restore','BorrowController@history');
+Route::get('/print','BorrowController@print');
+
 
 Route::get('/Borrows/{id}','BorrowitemController@verified');
+
+
 
 // Route::get('/history/{id}','BorrowController@history');
 

@@ -8,19 +8,17 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    //tugas PBO
-    //method di controller
-        public function index() //ini method controller
-        {
-            $items = Item::get();
-            return view('Item.index',compact('items'));
-        }
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('DisablePreventBack');
+    }
+    
+    public function index() //ini method controller
+    {
+        $items = Item::get();
+        return view('Item.index',compact('items'));
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -9,6 +9,12 @@ use App\Item;
 
 class BorrowController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('DisablePreventBack');
+    }
+    
    	public function index()
    	{
    	$tampil= Borrow::join('items' , 'borrows.id_item' , '=' , 'items.id')

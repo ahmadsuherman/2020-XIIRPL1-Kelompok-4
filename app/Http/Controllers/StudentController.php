@@ -7,6 +7,12 @@ use App\Student;
 use App\User;
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('DisablePreventBack');
+    }
+    
     public function index(){
     	$students = Student::get();
     	return view('Student.index',compact('students'));

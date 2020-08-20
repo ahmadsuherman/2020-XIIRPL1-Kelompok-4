@@ -20,8 +20,12 @@ Route::get('/logout', function () {
 
     return redirect('/login'); 
 });
+
+Auth::routes();
+
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){ 
-																			
+	Route::get('/home', 'HomeController@index')->name('home');				
+
 	Route::get('/items','ItemController@index');
 	Route::get('/items/create','ItemController@create'); 
 	Route::post('/items','ItemController@store'); 
@@ -38,10 +42,8 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/Borrow_item','BorrowitemController@index'); 
 	Route::get('/Borrow_item/{id}/borrow','BorrowitemController@borrow');  
 	Route::post('/Borrow_item/{id}/save','BorrowitemController@save'); 
-	
 
-	Route::get('/home', 'HomeController@index')->name('home'); 
-
+	Route::get('/restore/{id}','BorrowitemController@restore');
 });
 
 Route::group(['middleware' => ['auth','checkRole:admin']],function(){ 
@@ -51,18 +53,18 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::post('/Students','StudentController@store');
 	Route::delete('/Students/{id}','StudentController@destroy');
 
+	Route::get('/restore','BorrowController@history');
+
+	Route::get('/print','BorrowController@print');
+	
+	Route::get('/Borrows/{id}','BorrowitemController@verified');
+
 });
 
-Auth::routes();
 
 
-Route::get('/restore/{id}','BorrowitemController@restore');
-
-Route::get('/restore','BorrowController@history');
-Route::get('/print','BorrowController@print');
 
 
-Route::get('/Borrows/{id}','BorrowitemController@verified');
 
 
 

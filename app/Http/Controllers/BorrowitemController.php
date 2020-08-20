@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class BorrowitemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('DisablePreventBack');
+    }
+    
     public function index(){
     	$items = Item::get();
     	return view('Borrow_item.index',compact('items'));

@@ -1,3 +1,4 @@
+<title>Inventory | Peminjam Barang</title>
 @extends('layouts.master')
  
 @section('content')

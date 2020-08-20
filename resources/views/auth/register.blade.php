@@ -81,8 +81,26 @@
                                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                               </div>  
 
+                              <div class="row">
+                               <div class="col-xs-8 "> 
+                                
+                                    <label><i>Sudah punya akun?</i>
+                                       @auth
+                                                <a href="{{ url('/home') }}">Home</a>
+                                            @else
+                                               
+
+                                                @if (Route::has('login'))
+                                                    <a href="{{ route('login') }}">Login</a>
+                                                @endif
+                                            @endauth
+                                    </label>
+                               
+                                </div>
+                              </div>
+
                         <div class="form-group row mb-0">
-                            <div class="col-xs-4">
+                            <div class="col-xs-12">
                                 <button type="submit" class="btn btn-primary btn-block btn-flat">
                                     {{ __('Register') }}
                                 </button>

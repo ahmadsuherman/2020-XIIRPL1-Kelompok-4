@@ -3,6 +3,17 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
+        <div class="user-panel">
+        <div class="pull-left image">
+          <img src="img/mahaputra.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info"><br>
+          <p>Mahaputra Cerdas Utama</p>
+         
+        </div>
+      </div>
+
+       <li class="header">MENU</li>
 
         
         @if(auth()->user()->role == 'admin')

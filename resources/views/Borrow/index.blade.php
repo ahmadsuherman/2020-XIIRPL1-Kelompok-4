@@ -1,10 +1,11 @@
+<title>Inventory | Daftar Peminjaman</title>
 @extends('layouts.master')
  
 @section('content')
  
 <div class="row">
     <div class="col-md-12">
-        <h4>Daftar Peminjaman</h4>
+        <h4>Daftar Peminjaman Barang</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>

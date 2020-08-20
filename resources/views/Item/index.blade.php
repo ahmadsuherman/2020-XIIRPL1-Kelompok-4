@@ -1,3 +1,4 @@
+<title>Inventory | Daftar Barang</title>
 @extends('layouts.master')
  
 @section('content')
@@ -36,8 +37,8 @@
                					<td>{{$item->stock_item}}</td>
                         <td>{{$item->licensor}}</td>
                					<td>
-                         	<a href="/items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit" ><i class="fa fa-pencil-square-o"></i></a>
-                          <button href="/items/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                         <div style="width:60px"><a href="/items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit" ><i class="fa fa-pencil-square-o"></i></a>
+                          <button href="/items/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button></div>
                            <!-- <a href="Items/show/{{$item->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-eye"></i></a> -->
 
 

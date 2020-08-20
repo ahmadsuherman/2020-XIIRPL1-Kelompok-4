@@ -118,7 +118,15 @@
       <!-- <b>(021)</b>7398615 -->
     </div>
     <strong>
-      SMK MAHAPUTRA PROJECT PKL ( INVENTORI BARANG)
+     <div class="col s12 m9 l10">
+            <h5 class=""><b>SMK MAHAPUTRA CERDAS UTAMA</b></h5>
+            <p class="">Jl Katapang Andir KM. 4 Kp Pasantren Ds Sukamukti Kec Katapang Kab Bandung</p>
+            <p class="">022 85876147</p>
+            <a href="mailto:"><img title="email" src="https://smkmahaputra.sch.id/public/img/sosmed/email.png" alt="email" width="35" height="35"></a>
+            <a href="https://www.facebook.com/" target="_blank"><img title="Facebook" src="https://smkmahaputra.sch.id/public/img/sosmed/facebook.png" alt="Facebook" width="35" height="35"></a>
+            <a href="https://www.instagram.com/" target="_blank"><img title="Instagram" src="https://smkmahaputra.sch.id/public/img/sosmed/instagram.png" alt="RSS" width="35" height="35"></a>
+            <a href="https://www.twitter.com/" target="_blank"><img title="Instagram" src="https://smkmahaputra.sch.id/public/img/sosmed/twitter.png" alt="RSS" width="35" height="35"></a>
+          </div>
     </strong>
   </footer>
 

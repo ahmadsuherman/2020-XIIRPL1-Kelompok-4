@@ -1,3 +1,4 @@
+<title>Inventory | Edit Barang</title>
 @extends('layouts.master')
  
 @section('content')

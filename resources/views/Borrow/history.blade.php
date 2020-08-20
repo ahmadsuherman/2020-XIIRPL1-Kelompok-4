@@ -1,3 +1,4 @@
+<title>Inventory | Daftar Pengembalian</title>
 @extends('layouts.master')
  
 @section('content')
@@ -5,7 +6,7 @@
  <body>
 <div class="row">
     <div class="col-md-12">
-        <h4>Daftar Pengembalian</h4>
+        <h4>Daftar Pengembalian Barang</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>

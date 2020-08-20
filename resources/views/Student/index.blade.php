@@ -1,3 +1,4 @@
+<title>Inventory | Daftar Siswa</title>
 @extends('layouts.master')
  
 @section('content')

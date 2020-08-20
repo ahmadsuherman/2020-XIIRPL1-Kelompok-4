@@ -15,14 +15,14 @@ class usersTableSeeder extends Seeder
             'role'  => 'admin',
             'name' => 'Ahmad',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('123123123')
+            'password' => Hash::make('123123123')
             ]);
     
         DB::table('users')->insert([
             'role'  => 'siswa',
             'name' => 'Santi',
             'email' => 'santi@gmail.com',
-            'password' => bcrypt('12341234')
+            'password' => Hash::make('12341234')
             ]);
 
     }

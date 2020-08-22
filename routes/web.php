@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
+	
     return view('auth.login'); 
+    
 });
 
 Route::get('/logout', function () {  
@@ -34,6 +36,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/items/{id}/edit','ItemController@edit'); 
 	Route::post('/items/{id}/update','ItemController@update');  
 	Route::delete('/items/{id}','ItemController@destroy'); 
+
 
 	Route::get('/Borrows','BorrowController@index'); 
 	Route::get('/Borrows/{id}','BorrowController@borrowItem'); 

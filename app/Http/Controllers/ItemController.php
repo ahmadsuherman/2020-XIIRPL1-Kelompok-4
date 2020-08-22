@@ -92,6 +92,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'total_item' => 'required',
+            'stock_item' => 'required',
+            
+        ]);
+        dd($request);
+
         $items = Item::find($id);
         $items->item_name = $request->item_name;
         $items->total_item = $request->total_item;

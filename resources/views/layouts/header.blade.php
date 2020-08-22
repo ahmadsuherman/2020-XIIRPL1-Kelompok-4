@@ -24,7 +24,7 @@
 
     <li class="dropdown user user-menu">
             <a href="/home" class="_blank">
-              <img src="img/mahaputra.jpg" class="user-image" alt="User Image">
+              <img src="{{url('img\mahaputra.jpg')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Mahaputra</span>
             </a>
             <ul class="dropdown-menu">

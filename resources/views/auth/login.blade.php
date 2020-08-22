@@ -37,9 +37,11 @@
 
   <div class="login-box-body">
     <p class="login-box-msg">Silahkan login terlebih dahulu</p>
+    <center><img src="img/mahaputra.jpg" width="30%" height="30%"></center><br>
 
     <form action="{{ route('login') }}" method="post">
     @csrf
+    
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -54,6 +56,13 @@
         <input type="password" name="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+
+
+
+
+
+
+
       <div class="row">
 
         <div class="col-xs-8">

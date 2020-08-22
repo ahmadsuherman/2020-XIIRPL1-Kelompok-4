@@ -15,6 +15,16 @@
             <div class="box-body">
             <form role="form" action="/items/{{$items->id}}/update" method="post">
             @csrf
+
+             @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">NAMA BARANG</label>

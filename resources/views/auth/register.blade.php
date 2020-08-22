@@ -36,12 +36,13 @@
 
   <div class="register-box-body">
     <p class="login-box-msg">Register pengguna baru</p>
+    <center><img src="img/mahaputra.jpg" width="30%" height="30%"></center><br>
 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                               <div class="form-group has-feedback">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Nama Lengkap" value="" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control" name="name" placeholder="Nama Lengkap">
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                                 @error('name')
@@ -53,7 +54,7 @@
                               </div>
 
                               <div class="form-group has-feedback">                              
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  placeholder="Alamat Email" value="" required autocomplete="email">
+                                <input id="email" type="email" class="form-control" name="email"  placeholder="Alamat Email">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                                 @error('email')
@@ -65,7 +66,7 @@
                               </div>
 
                               <div class="form-group has-feedback">                             
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                                 @error('password')
@@ -77,7 +78,7 @@
                               </div>
 
                               <div class="form-group has-feedback">                             
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
                                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                               </div>  
 

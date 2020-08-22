@@ -5,7 +5,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <div class="user-panel">
         <div class="pull-left image">
-          <img src="img/mahaputra.jpg" class="img-circle" alt="User Image">
+          <img src="{{url('img\mahaputra.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info"><br>
           <p>Mahaputra Cerdas Utama</p>

@@ -15,19 +15,20 @@ class BorrowitemController extends Controller
         $this->middleware('auth');
         $this->middleware('DisablePreventBack');
     }
-    
-    public function index(){
-    	$items = Item::get();
-    	return view('Borrow_item.index',compact('items'));
+
+    public function index()
+    {
+        $items = Item::get();
+        return view('Borrow_item.index', compact('items'));
     }
     public function borrow($id)
     {
-    	$items = Item::whereId($id)->first();
-        return view('Borrow_item.borrow',compact('items'));
+        $items = Item::whereId($id)->first();
+        return view('Borrow_item.borrow', compact('items'));
     }
 
-        public function save(Request $request, $id)
-        {
+    public function save(Request $request, $id)
+    {
 
         // $this->validate($request,[
         //     'jml_pinjam' => 'required',
@@ -39,57 +40,82 @@ class BorrowitemController extends Controller
         $stock = $item->stock_item;
         $tot_borrow = $request->input('total_borrow');
 
-        if ($stock == 0){
-            \Session::flash('gagal','Stok Sudah Habis');
+        if ($stock == 0) {
+            \Session::flash('gagal', 'Stok Sudah Habis');
             return redirect('/Borrow_item');
-        } elseif($stock > $tot_borrow or $stock==$tot_borrow){
+        } elseif ($stock > $tot_borrow or $stock == $tot_borrow) {
 
             $borrow = new Borrow(); // input data baru
-            $borrow->id_item=$id;
-            $borrow->id_student=Auth::user()->id;
-            $borrow->total_borrow=$tot_borrow;
+            $borrow->id_item = $id;
+            $borrow->id_student = Auth::user()->id;
+            $borrow->total_borrow = $tot_borrow;
             $borrow->save();
 
-            $item->stock_item -=$tot_borrow;
+            $item->stock_item -= $tot_borrow;
             $borrow->status = 0;
 
             $item->save();
 
 
-            return redirect('/Borrows')->with('sukses','data berhasil');
+            return redirect('/Borrows')->with('sukses', 'data berhasil');
         } else {
-            \Session::flash('gagal','Jumlah Pinjam Lebih Dari Stok');
-            return redirect('/Borrow_item')->with(['error'=>'Peminjaman Tidak Berhasil']);;
+            \Session::flash('gagal', 'Jumlah Pinjam Lebih Dari Stok');
+            return redirect('/Borrow_item')->with(['error' => 'Peminjaman Tidak Berhasil']);;
         }
     }
 
-    public function verified($id){
-        Borrow::where('id',$id)->update([
+    public function verified($id)
+    {
+        Borrow::where('id', $id)->update([
             'status' => 1
         ]);
 
         return redirect('/Borrows');
-
     }
-    public function restore($id){
+    public function restore($id)
+    {
+        $borrow = Borrow::whereId($id)->first();
+
         $dt = Borrow::find($id);
         $id_item = $dt->id_item;
+
         $tot_borrow = $dt->total_borrow;
 
         $items = Item::find($id);
+
         $now = $items->stock_item;
 
         $stock_restore = $now + $tot_borrow;
 
-        Borrow::where('id',$id)->update([
-            'status'=>2
+        Borrow::where('id', $id)->update([
+            'status' => 2
         ]);
 
-        Item::where('id',$id_item)->update([
+        Item::where('id', $id_item)->update([
             'stock_item' => $stock_restore
         ]);
-        \Session::flash('sukses','Data Berhasil Di Kembalikan');
+        \Session::flash('sukses', 'Data Berhasil Di Kembalikan');
         return redirect('/Borrows');
+
+        // $borrow = Borrow::whereId($id)->first();
+        // $items = Item::find($id);
+
+        // if ($borrow->status == 1) {
+
+        //     Borrow::where('id', $id)->update([
+        //          'status' => 2
+        //       ]);
+        // }else{
+        //     echo "bababab";
+        // }
+
+        // $stock_restore = $items->id_item + $borrow->total_borrow;
+
+        // Item::where('id', $id_borrow)->update([
+        //      'stock_item' => $stock_restore
+        //  ]);
+
+        // \Session::flash('sukses', 'Data Berhasil Di Kembalikan');
+        // return redirect()->back();
     }
-    
 }

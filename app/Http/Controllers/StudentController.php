@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use App\User;
+
 class StudentController extends Controller
 {
     public function __construct()
@@ -12,28 +13,29 @@ class StudentController extends Controller
         $this->middleware('auth');
         $this->middleware('DisablePreventBack');
     }
-    
-    public function index(){
-    	$students = Student::get();
-    	return view('Student.index',compact('students'));
+
+    public function index()
+    {
+        $students = Student::get();
+        return view('Student.index', compact('students'));
     }
 
     public function create()
     {
-    	return view('Student.create');
+        return view('Student.create');
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'full_name' => 'required',
             'email' => 'required',
             'gender' => 'required',
             'class' => 'required'
-            
+
         ]);
-    	// dd($request);
-    	//ini untuk insert ke table user
+        // dd($request);
+        //ini untuk insert ke table user
         $user = new User;
         $user->role = 'siswa';
         $user->name = $request->full_name;
@@ -47,21 +49,18 @@ class StudentController extends Controller
         $request->request->add(['user_id' => $user->id]);
         $siswa = Student::create($request->all());
 
-        \Session::flash('sukses','Data Siswa Berhasil di tambahkan');
+        \Session::flash('sukses', 'Data Siswa Berhasil di tambahkan');
         return redirect('/Students');
     }
     public function destroy($id)
-    {                       
+    {
         try {
-            Student::where('id',$id)->delete();
+            Student::where('id', $id)->delete();
 
-            \Session::flash('sukses','data berhasil dihapus');
-            
+            \Session::flash('sukses', 'data berhasil dihapus');
         } catch (Exception $e) {
-            \Session::flash('gagal',$e->getMessage());
-
+            \Session::flash('gagal', $e->getMessage());
         }
         return redirect('/Students');
-     }
-    
+    }
 }

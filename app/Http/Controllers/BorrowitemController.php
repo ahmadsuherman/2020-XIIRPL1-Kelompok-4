@@ -69,53 +69,27 @@ class BorrowitemController extends Controller
         Borrow::where('id', $id)->update([
             'status' => 1
         ]);
-
+        \Session::flash('sukses', 'Data Berhasil di Verifikasi');
         return redirect('/Borrows');
     }
     public function restore($id)
     {
+
+
         $borrow = Borrow::whereId($id)->first();
 
-        $dt = Borrow::find($id);
-        $id_item = $dt->id_item;
+        $item = Item::whereId($borrow->id_item)->first();
 
-        $tot_borrow = $dt->total_borrow;
+        //mengembalikan jumlah stock sesuai barang yang di pinjam
+        $item->stock_item += $borrow->total_borrow;
 
-        $items = Item::find($id);
+        //merubah status pinjam menjadi dikembalikan
+        $borrow->status = '2';
 
-        $now = $items->stock_item;
-
-        $stock_restore = $now + $tot_borrow;
-
-        Borrow::where('id', $id)->update([
-            'status' => 2
-        ]);
-
-        Item::where('id', $id_item)->update([
-            'stock_item' => $stock_restore
-        ]);
-        \Session::flash('sukses', 'Data Berhasil Di Kembalikan');
-        return redirect('/Borrows');
-
-        // $borrow = Borrow::whereId($id)->first();
-        // $items = Item::find($id);
-
-        // if ($borrow->status == 1) {
-
-        //     Borrow::where('id', $id)->update([
-        //          'status' => 2
-        //       ]);
-        // }else{
-        //     echo "bababab";
-        // }
-
-        // $stock_restore = $items->id_item + $borrow->total_borrow;
-
-        // Item::where('id', $id_borrow)->update([
-        //      'stock_item' => $stock_restore
-        //  ]);
-
-        // \Session::flash('sukses', 'Data Berhasil Di Kembalikan');
-        // return redirect()->back();
+        //save edit items dan borrows
+        $borrow->save();
+        $item->save();
+        \Session::flash('sukses', 'Barang Berhasil Di Kemablikan');
+        return back();
     }
 }

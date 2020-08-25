@@ -29,9 +29,9 @@ class StudentController extends Controller
     {
         $this->validate($request, [
             'full_name' => 'required',
-            'email' => 'required',
-            'gender' => 'required',
-            'class' => 'required'
+            'email'     => 'required',
+            'gender'    => 'required',
+            'class'     => 'required'
 
         ]);
         // dd($request);
@@ -57,7 +57,7 @@ class StudentController extends Controller
         try {
             Student::where('id', $id)->delete();
 
-            \Session::flash('sukses', 'data berhasil dihapus');
+            \Session::flash('sukses', 'Data berhasil dihapus');
         } catch (Exception $e) {
             \Session::flash('gagal', $e->getMessage());
         }

@@ -39,9 +39,9 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'item_name' => 'required',
-            'total_item' => 'required'
-
+            'item_name'     => 'required',
+            'total_item'    => 'required',
+            'licensor'      => 'required'
         ]);
 
         $items = new Item;
@@ -52,7 +52,7 @@ class ItemController extends Controller
         $items->total_item = $total;
         $items->stock_item = $total;
         $items->save();
-        \Session::flash('sukses', 'data berhasil di Tambahkan');
+        \Session::flash('sukses', 'Data berhasil di Tambahkan');
 
 
         return redirect('/items');
@@ -96,12 +96,9 @@ class ItemController extends Controller
             'stock_item' => 'required',
 
         ]);
-        // dd($request);
+
 
         $item = Item::whereId($id)->first();
-
-        // $stock = $item->stock_item;
-        // $total_borrow = $item->total_borrow;
         $total_item = $request->input('total_item');
         $stock_item = $request->input('stock_item');
 
@@ -116,7 +113,7 @@ class ItemController extends Controller
             $items->stock_item = $request->stock_item;
 
             $items->update();
-            \Session::flash('sukses', 'data berhasil di edit');
+            \Session::flash('sukses', 'Data berhasil di edit');
 
 
             return redirect('/items');
@@ -137,7 +134,7 @@ class ItemController extends Controller
         try {
             Item::where('id', $id)->delete();
 
-            \Session::flash('sukses', 'data berhasil dihapus');
+            \Session::flash('sukses', 'Data berhasil dihapus');
         } catch (Exception $e) {
             \Session::flash('gagal', $e->getMessage());
         }

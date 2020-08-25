@@ -12,56 +12,54 @@
 */
 
 Route::get('/', function () {
-	
-    return view('auth.login'); 
-    
+
+	return view('auth.login');
 });
 
-Route::get('/logout', function () {  
-    Auth::logout(); 
+Route::get('/logout', function () {
+	Auth::logout();
 
-    return redirect('/login'); 
+	return redirect('/login');
 });
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){ 
-	Route::get('/home', 'HomeController@index')->name('home');				
+Route::group(['middleware' => ['auth', 'checkRole:admin,siswa']], function () {
+	Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::get('/items','ItemController@index');
-	Route::get('/items/create','ItemController@create'); 
-	Route::post('/items','ItemController@store'); 
-	Route::get('/items/show/{id}','ItemController@show');
+	Route::get('/items', 'ItemController@index');
+	Route::get('/items/create', 'ItemController@create');
+	Route::post('/items', 'ItemController@store');
+	Route::get('/items/show/{id}', 'ItemController@show');
 
-	Route::get('/items/{id}/edit','ItemController@edit'); 
-	Route::post('/items/{id}/update','ItemController@update');  
-	Route::delete('/items/{id}','ItemController@destroy'); 
+	Route::get('/items/{id}/edit', 'ItemController@edit');
+	Route::post('/items/{id}/update', 'ItemController@update');
+	Route::delete('/items/{id}', 'ItemController@destroy');
 
 
-	Route::get('/Borrows','BorrowController@index'); 
-	Route::get('/Borrows/{id}','BorrowController@borrowItem'); 
-	Route::delete('/Borrow/{id}','BorrowController@destroy');
+	Route::get('/Borrows', 'BorrowController@index');
+	Route::get('/Borrows/{id}', 'BorrowController@borrowItem');
+	Route::delete('/Borrow/{id}', 'BorrowController@destroy');
 
-	Route::get('/Borrow_item','BorrowitemController@index'); 
-	Route::get('/Borrow_item/{id}/borrow','BorrowitemController@borrow');  
-	Route::post('/Borrow_item/{id}/save','BorrowitemController@save'); 
+	Route::get('/Borrow_item', 'BorrowitemController@index');
+	Route::get('/Borrow_item/{id}/borrow', 'BorrowitemController@borrow');
+	Route::post('/Borrow_item/{id}/save', 'BorrowitemController@save');
 
-	Route::get('/restore/{id}','BorrowitemController@restore');
+	Route::get('/restore/{id}', 'BorrowitemController@restore');
 });
 
-Route::group(['middleware' => ['auth','checkRole:admin']],function(){ 
-																	
-	Route::get('/Students','StudentController@index'); 
-	Route::get('/Students/create','StudentController@create');
-	Route::post('/Students','StudentController@store');
-	Route::delete('/Students/{id}','StudentController@destroy');
+Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 
-	Route::get('/restore','BorrowController@history');
+	Route::get('/Students', 'StudentController@index');
+	Route::get('/Students/create', 'StudentController@create');
+	Route::post('/Students', 'StudentController@store');
+	Route::delete('/Students/{id}', 'StudentController@destroy');
 
-	Route::get('/print','BorrowController@print');
-	
-	Route::get('/Borrows/{id}','BorrowitemController@verified');
+	Route::get('/restore', 'BorrowController@history');
 
+	Route::get('/print', 'BorrowController@print');
+
+	Route::get('/Borrows/{id}', 'BorrowitemController@verified');
 });
 
 
@@ -72,4 +70,3 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 
 
 // Route::get('/history/{id}','BorrowController@history');
-

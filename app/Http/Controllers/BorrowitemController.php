@@ -36,8 +36,8 @@ class BorrowitemController extends Controller
         // dd($request);
 
         $item = Item::whereId($id)->first();
-
         $stock = $item->stock_item;
+
         $tot_borrow = $request->input('total_borrow');
 
         if ($stock == 0) {
@@ -57,10 +57,10 @@ class BorrowitemController extends Controller
             $item->save();
 
 
-            return redirect('/Borrows')->with('sukses', 'data berhasil');
+            return redirect('/Borrows')->with('sukses', 'Data berhasil');
         } else {
             \Session::flash('gagal', 'Jumlah Pinjam Lebih Dari Stok');
-            return redirect('/Borrow_item')->with(['error' => 'Peminjaman Tidak Berhasil']);;
+            return redirect('/Borrow_item');    
         }
     }
 

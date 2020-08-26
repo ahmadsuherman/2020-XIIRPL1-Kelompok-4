@@ -16,8 +16,20 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = Student::get();
-        return view('Student.index', compact('students'));
+    //     $tampil = Student::join('users', 'students.user_id', '=', 'users.id')->select(
+    //     'users.*',
+    //     'students.*')->get();
+
+    // return view('Student.index', ['tampil' => $tampil]);
+
+    $users = User::join('students', 'users.id', '=', 'students.user_id')->select(
+        'users.*',
+        'students.*')->get();
+
+    return view('Student.index', ['users' => $users]);
+
+        // $students = Student::get();
+        // return view('Student.index', compact('students'));
     }
 
     public function create()
@@ -28,7 +40,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'full_name' => 'required',
+            'nis'       => 'required',  
             'email'     => 'required',
             'gender'    => 'required',
             'class'     => 'required'
@@ -38,7 +50,7 @@ class StudentController extends Controller
         //ini untuk insert ke table user
         $user = new User;
         $user->role = 'siswa';
-        $user->name = $request->full_name;
+        $user->name = $request->name;
         $user->email = $request->email;
 
         $user->password = bcrypt('123456789');
@@ -55,8 +67,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         try {
-            Student::where('id', $id)->delete();
-
+            User::where('id', $id)->delete();
             \Session::flash('sukses', 'Data berhasil dihapus');
         } catch (Exception $e) {
             \Session::flash('gagal', $e->getMessage());

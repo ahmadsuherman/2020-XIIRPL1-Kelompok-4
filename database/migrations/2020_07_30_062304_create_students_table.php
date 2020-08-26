@@ -14,13 +14,16 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('full_name',50);
-            $table->integer('user_id');
+            $table->Increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->string('nis',20);          
             $table->string('class',20);    
             $table->string('gender',20);
             $table->timestamps();
-            $table->engine = 'InnoDB';
+            $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
     }
 

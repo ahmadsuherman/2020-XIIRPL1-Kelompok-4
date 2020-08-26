@@ -35,8 +35,7 @@
                                 <td>{{$item->total_item}}</td>
                                 <td>{{$item->stock_item}}</td>
                                 <td>
-
-
+                                    
                                     <a href="/Borrow_item/{{$item->id}}/borrow" type="button" class="btn btn-sm btn-info">PINJAM</a>
                                 </td>
                             </tr>

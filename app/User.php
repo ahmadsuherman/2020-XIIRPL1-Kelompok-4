@@ -1,19 +1,23 @@
 <?php
 
 namespace App;
-use App\Borrow;
+// use App\Borrow;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    public function borrows()
-    {
-        return $this->belongsToMany('Borrow');
-    }
+    // public function borrows()
+    // {
+    //     return $this->belongsToMany('Borrow');
+    // }
 
     use Notifiable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.

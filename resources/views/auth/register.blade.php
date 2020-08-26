@@ -53,8 +53,9 @@
 
                               </div>
 
+
                               <div class="form-group has-feedback">                              
-                                <input id="email" type="email" class="form-control" name="email"  placeholder="Alamat Email">
+                                <input id="email" type="email" class="form-control" name="email"  placeholder="Email">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                                 @error('email')
@@ -64,6 +65,33 @@
                                 @enderror
 
                               </div>
+
+                               <div class="form-group has-feedback">                              
+                                <input  type="text" class="form-control" name="nis"  placeholder="NIS">
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                              </div>
+
+                              <div class="form-group">
+                                <select class="form-control" name="gender">
+                                  <option>Laki Laki</option>
+                                  <option>Perempuan</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group">
+                              <select class="form-control" name="class">
+                                <option>X RPL</option>
+                                <option>X MM 2</option>
+                                <option>XI RPL</option>
+                                <option>XI MM 1</option>
+                                <option>XI MM 2</option>
+                                <option>XII RPL 1</option>
+                                <option>XII RPL 2</option>
+                                <option>XII MM</option>
+
+                              </select>
+                            </div>
 
                               <div class="form-group has-feedback">                             
                                 <input id="password" type="password" class="form-control" name="password" placeholder="Password">

@@ -12,6 +12,7 @@ class studentsTableSeeder extends Seeder
     public function run()
     {
          DB::table('students')->insert([
+            'nis'  => '181910001',
             'full_name'  => 'Malay Cahya',
             'user_id' => '1',
             'class' => 'XII RPL1',

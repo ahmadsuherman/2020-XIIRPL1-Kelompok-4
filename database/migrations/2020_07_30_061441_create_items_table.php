@@ -14,14 +14,14 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->string('item_name',255);
             $table->integer('total_item');
             $table->integer('stock_item');
             $table->string('licensor',255);
-            
+
             $table->timestamps();
-            $table->engine = 'InnoDB';
+            $table->softDeletes();
 
         });
     }

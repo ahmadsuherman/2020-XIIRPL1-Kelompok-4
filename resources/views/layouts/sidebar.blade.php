@@ -42,7 +42,7 @@
         @endif
 
         <li class="header"></li>
-        <li class="menu-sidebar"><a href="{{ url('/logout')}}"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li>
+        <li class="menu-sidebar"><a href="/logout"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li>
 
 
       </ul>

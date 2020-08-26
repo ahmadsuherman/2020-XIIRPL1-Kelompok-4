@@ -21,6 +21,7 @@
             <thead>
               <tr>
                 <th>NO</th>
+                <th>NIS</th>
                 <th>NAMA</th>
                 <th>JENIS KELAMIN</th>
                 <th>KELAS</th>
@@ -28,14 +29,15 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($students as $e=>$student)
+              @foreach($users as $e=>$user)
               <tr>
                 <td>{{$e+1}}</td>
-                <td>{{$student->full_name}}</td>
-                <td>{{$student->gender}}</td>
-                <td>{{$student->class}}</td>
+                <td>{{$user->nis}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->gender}}</td>
+                <td>{{$user->class}}</td>
                 <td>
-                  <button href="/Students/{{$student->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                  <button href="/Students/{{$user->user_id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
         </div>
         </td>
         </tr>
@@ -70,7 +72,11 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">NAMA SISWA</label>
-                      <input type="text" name="full_name" class="form-control" placeholder="Nama Siswa">
+                      <input type="text" name="name" class="form-control" placeholder="Nama Siswa">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">NIS</label>
+                      <input type="text" name="nis" class="form-control" placeholder="NIS">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">EMAIL</label>
@@ -85,7 +91,7 @@
 
 
                       </select>
-
+                    </div>
                       <div class="form-group">
                         <label>KELAS</label>
                         <select class="form-control" name="class">

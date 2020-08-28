@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Borrow;
 use App\Item;
-
+use App\Licensor;
 
 class BorrowController extends Controller
 {
@@ -17,13 +17,19 @@ class BorrowController extends Controller
 
   public function index()
   {
-    $tampil = Borrow::join('items', 'borrows.id_item', '=', 'items.id')
-      ->join('users', 'borrows.id_student', '=', 'users.id')->select(
+
+    $tampil = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->leftjoin('items', 'borrows.id_item', '=', 'items.id')
+    ->leftjoin('licensors', 'items.licensor_id', '=', 'licensors.id')
+    ->select(
         'items.*',
-        'users.*',
+        'users.name as username',
         'borrows.*',
+        'licensors.*',
         'borrows.id as borrow_id'
       )->get();
+
+      
     return view('Borrow.index', ['tampil' => $tampil]);
     //  $borrows = Borrow::all();
     //  $items = Item::all();
@@ -49,25 +55,29 @@ class BorrowController extends Controller
   }
   public function history()
   {
-    $data = Borrow::join('items', 'borrows.id_item', '=', 'items.id')
-      ->join('users', 'borrows.id_student', '=', 'users.id')->select(
+    $data = Borrow::leftjoin('users', 'borrows.user_id', '=', 'users.id')
+    ->leftjoin('items', 'borrows.id_item', '=', 'items.id')
+    ->leftjoin('licensors', 'items.licensor_id', '=', 'licensors.id')
+    ->select(
         'items.*',
-        'users.*',
+        'users.name as username',
         'borrows.*',
-        'borrows.id as id'
+        'licensors.*',
+        'borrows.id as borrow_id'
       )->get();
-
-
     return view('Borrow.history', ['data' => $data]);
   }
 
   public function print()
   {
-    $data = Borrow::join('items', 'borrows.id_item', '=', 'items.id')
-      ->join('users', 'borrows.id_student', '=', 'users.id')->select(
+     $data = Borrow::leftjoin('users', 'borrows.user_id', '=', 'users.id')
+    ->leftjoin('items', 'borrows.id_item', '=', 'items.id')
+    ->leftjoin('licensors', 'items.licensor_id', '=', 'licensors.id')
+    ->select(
         'items.*',
-        'users.*',
+        'users.name as username',
         'borrows.*',
+        'licensors.*',
         'borrows.id as borrow_id'
       )->get();
 

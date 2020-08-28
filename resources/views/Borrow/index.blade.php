@@ -33,17 +33,18 @@
             </thead>
             <tbody>
               @foreach($tampil as $e=>$a)
-              @if(auth()->user()->id == $a->id_student OR auth()->user()->role == 'admin')
+              @if(auth()->user()->id == $a->user_id OR auth()->user()->role == 'admin')
+              
               <tr>
                 <td>{{$e+1}}</td>
                 <!-- @if(auth()->user()->role == 'admin')
-                        <td><a href="{{ url('history/'.$a->id_student) }}"><i class="fa fa-eye"></i></a></td>
+                        <td><a href="{{ url('history/'.$a->user_id) }}"><i class="fa fa-eye"></i></a></td>
                         @endif -->
-                <td>{{$a->name}}</td>
+                <td>{{$a->username}}</td>
                 <td>{{$a->item_name}}</td>
                 <td>{{$a->total_borrow}}</td>
 
-                @if($a->status == 0)
+                @if($a->status == NULL)
                 <td><label class="label label-warning">Menunggu Verifikasi</label></td>
                 @endif
 
@@ -56,12 +57,12 @@
                 @endif
 
                 <td>{{$a->created_at}}</td>
-                <td>{{$a->licensor}}</td>
+                <td>{{$a->name}}</td>
 
                 <td>
                   @if(auth()->user()->role == 'admin')
                   @if($a->status == NULL)
-                  <a href="Borrows/{{$a->id}}" class="btn btn-primary">Verifikasi</a>
+                  <a href="Borrows/{{$a->id}}/verified" class="btn btn-primary">Verifikasi</a>
 
 
 
@@ -81,6 +82,7 @@
                   @endif
                 </td>
               </tr>
+           
               @endif
               @endforeach
             </tbody>

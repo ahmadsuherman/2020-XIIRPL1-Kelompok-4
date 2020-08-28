@@ -37,7 +37,8 @@
                 <td>{{$user->gender}}</td>
                 <td>{{$user->class}}</td>
                 <td>
-                  <button href="/Students/{{$user->user_id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                  <button href="/Students/{{$user->user_id}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                </td>
         </div>
         </td>
         </tr>
@@ -57,19 +58,19 @@
                 </center>
               </div>
               <div class="modal-body">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                  <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
-                </div>
-                @endif
-
+              
                 <form role="form" action="{{ ('/Students')}}" method="post">
                   @csrf
                   <div class="box-body">
+                    @if ($errors->any())
+                      <div class="alert alert-danger">
+                        <ul>
+                          @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                          @endforeach
+                        </ul>
+                      </div>
+                      @endif
                     <div class="form-group">
                       <label for="exampleInputEmail1">NAMA SISWA</label>
                       <input type="text" name="name" class="form-control" placeholder="Nama Siswa">

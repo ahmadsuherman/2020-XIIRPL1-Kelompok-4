@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Item;
 use App\Student;
 use App\Borrow;
+
+
 use Illuminate\Support\Facades\Auth;
 
 class BorrowitemController extends Controller
@@ -24,7 +26,10 @@ class BorrowitemController extends Controller
     public function borrow($id)
     {
         $items = Item::whereId($id)->first();
-        return view('Borrow_item.borrow', compact('items'));
+        $joins = Item::join('licensors', 'items.licensor_id', '=', 'licensors.id')->select(
+        'licensors.*',
+        'items.*')->get();
+        return view('Borrow_item.borrow', compact('items'), ['joins' => $joins]);
     }
 
     public function save(Request $request, $id)
@@ -47,7 +52,7 @@ class BorrowitemController extends Controller
 
             $borrow = new Borrow(); // input data baru
             $borrow->id_item = $id;
-            $borrow->id_student = Auth::user()->id;
+            $borrow->user_id = Auth::user()->id;
             $borrow->total_borrow = $tot_borrow;
             $borrow->save();
 
@@ -66,11 +71,15 @@ class BorrowitemController extends Controller
 
     public function verified($id)
     {
+        // $borrow = Borrow::whereId($id)->first();
+        // $item = Item::whereId($borrow->id_item)->first();
+        // $item->stock_item -= $borrow->total_borrow;
         Borrow::where('id', $id)->update([
             'status' => 1
         ]);
         \Session::flash('sukses', 'Data Berhasil di Verifikasi');
         return redirect('/Borrows');
+
     }
     public function restore($id)
     {

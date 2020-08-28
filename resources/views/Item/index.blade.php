@@ -29,17 +29,17 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($items as $e=>$item)
+              @foreach($joins as $e=>$join)
               <tr>
                 <td>{{$e+1}}</td>
-                <td>{{$item->item_name}}</td>
-                <td>{{$item->total_item}}</td>
-                <td>{{$item->stock_item}}</td>
-                <td>{{$item->licensor}}</td>
+                <td>{{$join->item_name}}</td>
+                <td>{{$join->total_item}}</td>
+                <td>{{$join->stock_item}}</td>
+                <td>{{$join->name}}</td>
                 <td>
-                  <a href="/items/{{$item->id}}/edit" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
-                  <button href="/items/{{$item->id}}" class="btn btn-warning btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
-                  <!-- <a href="Items/show/{{$item->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-eye"></i></a> -->
+                  <a href="/items/{{$join->id}}/edit" class="btn btn-primary btn-sm btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                  <button href="/items/{{$join->id}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                  <!-- <a href="Items/show/{{$join->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-eye"></i></a> -->
 
 
                 </td>
@@ -72,6 +72,7 @@
                   <form role="form" action="{{ ('/items')}}" method="post">
                     @csrf
                     <div class="box-body">
+
                       <div class="form-group">
                         <label for="exampleInputEmail1">NAMA BARANG</label>
                         <input type="text" name="item_name" class="form-control" placeholder="Nama Barang">
@@ -82,10 +83,16 @@
                   <input type="file" name="image" id="exampleInputFile">
                 </div> -->
 
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">PEMBERI IZIN</label>
-                        <input type="text" name="licensor" class="form-control" placeholder="Nama Pemberi izin">
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">ATAS IZIN</label>
+                        <select type="text" name="licensor_id" class="form-control select">
+                          @foreach($licensors as $licensor)
+                          <option value="{{ $licensor->id }}">{{$licensor->name}}</option>
+                          @endforeach
+                        </select> 
                       </div>
+
+
 
                       <div class="form-group">
                         <label for="exampleInputPassword1">JUMLAH BARANG</label>

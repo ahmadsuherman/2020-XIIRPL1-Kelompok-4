@@ -13,7 +13,6 @@ class studentsTableSeeder extends Seeder
     {
          DB::table('students')->insert([
             'nis'  => '181910001',
-            'full_name'  => 'Malay Cahya',
             'user_id' => '1',
             'class' => 'XII RPL1',
             'gender' => 'perempuan',

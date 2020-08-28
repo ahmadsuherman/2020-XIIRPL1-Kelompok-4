@@ -37,7 +37,7 @@
                 <tr>
                   <td>{{$e+1}}</td>
 
-                  <td>{{$a->name}}</td>
+                  <td>{{$a->username}}</td>
                   <td>{{$a->item_name}}</td>
                   <td>{{$a->total_borrow}}</td>
 
@@ -56,7 +56,7 @@
                   <td>{{$a->created_at}}</td>
                   <td>{{$a->updated_at}}</td>
 
-                  <td>{{$a->licensor}}</td>
+                  <td>{{$a->name}}</td>
 
 
                 </tr>

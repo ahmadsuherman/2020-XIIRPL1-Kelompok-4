@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Borrow;
 use App\Item;
+use App\Licensor;
+
 
 
 class HomeController extends Controller
@@ -19,7 +21,9 @@ class HomeController extends Controller
     {
         $borrow = Borrow::count();
         $item = Item::count();
+        $licensor = Licensor::count();
+        
                 
-        return view('home',compact('borrow','item'));
+        return view('home',compact('borrow','item','licensor'));
     }
 }

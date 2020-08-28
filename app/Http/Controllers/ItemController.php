@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
-
+use App\Licensor;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -16,8 +16,12 @@ class ItemController extends Controller
 
     public function index() //ini method controller
     {
-        $items = Item::get();
-        return view('Item.index', compact('items'));
+        $licensors = Licensor::get();
+        $joins = Item::join('licensors', 'items.licensor_id', '=', 'licensors.id')->select(
+        'licensors.*',
+        'items.*')->get();
+
+        return view('Item.index', compact('licensors'), ['joins' => $joins]);
     }
 
     /**
@@ -26,7 +30,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {  
         return view('Item.add');
     }
 
@@ -41,13 +45,13 @@ class ItemController extends Controller
         $this->validate($request, [
             'item_name'     => 'required',
             'total_item'    => 'required',
-            'licensor'      => 'required'
+            'licensor_id'      => 'required'
         ]);
 
         $items = new Item;
+        $items->licensor_id = $request->licensor_id;
         $items->item_name = $request->item_name;
-        $items->total_item = $request->total_item;
-        $items->licensor = $request->licensor;
+        $items->total_item = $request->total_item;      
         $total = $request->input('total_item');
         $items->total_item = $total;
         $items->stock_item = $total;

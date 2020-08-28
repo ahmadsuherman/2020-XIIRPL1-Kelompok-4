@@ -40,8 +40,9 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'name'     => 'required',
             'nis'       => 'required',  
-            'email'     => 'required',
+            'email'     => 'required|unique:users|max:255',
             'gender'    => 'required',
             'class'     => 'required'
 

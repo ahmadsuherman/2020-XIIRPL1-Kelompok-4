@@ -18,6 +18,9 @@
         
         @if(auth()->user()->role == 'admin')
 
+
+        <li class="menu-sidebar"><a href="{{ url('/licensor') }}"><i class="fa fa-user"></i> <span>Pemberi Izin</span></a></li>
+
         <li class="treeview menu">
           <a href="">
             <i class="fa fa-th-large"></i> <span>Barang</span>
@@ -33,7 +36,7 @@
           </ul>
         </li>
 
-        <li class="menu-sidebar"><a href="{{ url('/Students') }}"><i class="fa fa-user"></i> <span>Daftar siswa</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/Students') }}"><i class="fa  fa-child"></i> <span>Daftar siswa</span></a></li>
         @endif
 
         <li class="menu-sidebar"><a href="{{ url('/Borrow_item') }}"><i class="fa  fa-pencil-square-o"></i><span> Pinjam Barang</span></a></li>

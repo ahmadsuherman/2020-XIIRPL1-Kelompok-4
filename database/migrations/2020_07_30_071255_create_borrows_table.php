@@ -15,7 +15,7 @@ class CreateBorrowsTable extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_student')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('id_item')->unsigned();
             $table->integer('total_borrow');
             $table->integer('status')->nullable();
@@ -23,7 +23,7 @@ class CreateBorrowsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('id_item')->references('id')->on('items')->onDelete('cascade');
-            $table->foreign('id_student')->references('id')->on('users')->onDelete('cascade');  
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  
            
   
         });

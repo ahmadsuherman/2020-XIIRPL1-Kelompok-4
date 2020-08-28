@@ -59,9 +59,17 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 
 	Route::get('/print', 'BorrowController@print');
 
-	Route::get('/Borrows/{id}', 'BorrowitemController@verified');
+	Route::get('/Borrows/{id}/verified', 'BorrowitemController@verified');
 });
 
+
+
+Route::get('/licensor', 'LicensorController@index');
+	Route::get('/licensor/create', 'LicensorController@create');
+	Route::post('/licensor/create', 'LicensorController@store');
+	Route::get('/licensor/{id}', 'LicensorController@edit');
+	Route::post('/licensor/{id}/update', 'LicensorController@update');
+	Route::delete('/licensor/{id}', 'LicensorController@destroy');
 
 
 

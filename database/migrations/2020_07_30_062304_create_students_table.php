@@ -16,11 +16,11 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('nis',20);          
+            $table->string('nis',20)->unique();          
             $table->string('class',20);    
             $table->string('gender',20);
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             

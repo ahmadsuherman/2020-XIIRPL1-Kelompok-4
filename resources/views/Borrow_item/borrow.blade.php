@@ -27,11 +27,12 @@
               <input type="text" name="stock_item" readonly="" value="{{$items->stock_item}}" class="form-control">
             </div>
 
+            @foreach($joins as $join)
             <div class="form-group">
               <label for="exampleInputEmail1">ATAS IZIN</label>
-              <input type="text" name="licensor" readonly="" value="{{$items->licensor}}" class="form-control">
+              <input type="text" name="licensor_id" readonly="" value="{{$join->name}}" class="form-control">
             </div>
-
+            @endforeach
 
             <div class="form-group">
               <label for="exampleInputEmail1">JUMLAH PINJAAM</label>

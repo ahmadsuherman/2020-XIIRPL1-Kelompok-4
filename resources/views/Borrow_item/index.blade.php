@@ -28,6 +28,7 @@
                         </thead>
                         <tbody>
                             @foreach($items as $e=>$item)
+                            @if($item->stock_item != 0)
                             <tr>
 
                                 <td>{{$e+1}}</td>
@@ -39,6 +40,7 @@
                                     <a href="/Borrow_item/{{$item->id}}/borrow" type="button" class="btn btn-sm btn-info">PINJAM</a>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
 

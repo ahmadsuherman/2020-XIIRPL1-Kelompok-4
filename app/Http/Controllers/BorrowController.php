@@ -17,20 +17,19 @@ class BorrowController extends Controller
 
   public function index()
   {
-
-    $tampil = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
-    ->leftjoin('items', 'borrows.id_item', '=', 'items.id')
-    ->leftjoin('licensors', 'items.licensor_id', '=', 'licensors.id')
+    $borrows = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->join('items', 'borrows.id_item', '=', 'items.id')
+    ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
     ->select(
         'items.*',
+        'items.id as items_id',
         'users.name as username',
         'borrows.*',
-        'licensors.*',
+        'licensors.name as licensor',
         'borrows.id as borrow_id'
       )->get();
 
-      
-    return view('Borrow.index', ['tampil' => $tampil]);
+    return view('Borrow.index',['borrows' => $borrows]);
     //  $borrows = Borrow::all();
     //  $items = Item::all();
     // return view('Borrow.index',['borrows' => $borrows, 'items' => $items]);
@@ -55,29 +54,30 @@ class BorrowController extends Controller
   }
   public function history()
   {
-    $data = Borrow::leftjoin('users', 'borrows.user_id', '=', 'users.id')
-    ->leftjoin('items', 'borrows.id_item', '=', 'items.id')
-    ->leftjoin('licensors', 'items.licensor_id', '=', 'licensors.id')
+     $history = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->join('items', 'borrows.id_item', '=', 'items.id')
+    ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
     ->select(
         'items.*',
         'users.name as username',
         'borrows.*',
-        'licensors.*',
+        'licensors.name as licensor',
         'borrows.id as borrow_id'
       )->get();
-    return view('Borrow.history', ['data' => $data]);
+
+    return view('Borrow.history', ['history' => $history]);
   }
 
   public function print()
   {
-     $data = Borrow::leftjoin('users', 'borrows.user_id', '=', 'users.id')
-    ->leftjoin('items', 'borrows.id_item', '=', 'items.id')
-    ->leftjoin('licensors', 'items.licensor_id', '=', 'licensors.id')
+     $data = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->join('items', 'borrows.id_item', '=', 'items.id')
+    ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
     ->select(
         'items.*',
         'users.name as username',
         'borrows.*',
-        'licensors.*',
+        'licensors.name as licensor',
         'borrows.id as borrow_id'
       )->get();
 

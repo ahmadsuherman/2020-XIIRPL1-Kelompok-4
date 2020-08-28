@@ -16,12 +16,8 @@ class ItemController extends Controller
 
     public function index() //ini method controller
     {
-        $licensors = Licensor::get();
-        $joins = Item::join('licensors', 'items.licensor_id', '=', 'licensors.id')->select(
-        'licensors.*',
-        'items.*')->get();
-
-        return view('Item.index', compact('licensors'), ['joins' => $joins]);
+        $items = Item::all();
+        return view('Item.index', compact('items'));
     }
 
     /**
@@ -45,11 +41,9 @@ class ItemController extends Controller
         $this->validate($request, [
             'item_name'     => 'required',
             'total_item'    => 'required',
-            'licensor_id'      => 'required'
         ]);
 
         $items = new Item;
-        $items->licensor_id = $request->licensor_id;
         $items->item_name = $request->item_name;
         $items->total_item = $request->total_item;      
         $total = $request->input('total_item');

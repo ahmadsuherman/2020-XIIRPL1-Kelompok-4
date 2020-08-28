@@ -5,12 +5,15 @@ use App\Item;
 use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Borrow extends Model
 {
+	use SoftDeletes;
 
-   protected $fillable=['id_student','id_item','total_borrow','status','created_at','updated_at'];
+   protected $dates = ['deleted_at'];
+   protected $fillable=['user_id','licensor_id','id_item','total_borrow','status','created_at','updated_at'];
 
    // public function students()
    // {

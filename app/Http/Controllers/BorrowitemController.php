@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Item;
 use App\Student;
 use App\Borrow;
+use App\Licensor;
+
 
 
 use Illuminate\Support\Facades\Auth;
@@ -26,10 +28,12 @@ class BorrowitemController extends Controller
     public function borrow($id)
     {
         $items = Item::whereId($id)->first();
-        $joins = Item::join('licensors', 'items.licensor_id', '=', 'licensors.id')->select(
+
+        $licensors = Licensor::get();
+        $joins = Borrow::join('licensors', 'borrows.licensor_id', '=', 'licensors.id')->select(
         'licensors.*',
-        'items.*')->get();
-        return view('Borrow_item.borrow', compact('items'), ['joins' => $joins]);
+        'borrows.*')->get();
+        return view('Borrow_item.borrow', compact('items'),  ['licensors' => $licensors]);
     }
 
     public function save(Request $request, $id)
@@ -53,11 +57,13 @@ class BorrowitemController extends Controller
             $borrow = new Borrow(); // input data baru
             $borrow->id_item = $id;
             $borrow->user_id = Auth::user()->id;
+            $borrow->licensor_id = $request->licensor_id;
             $borrow->total_borrow = $tot_borrow;
+            $borrow->status = $request->status;
             $borrow->save();
 
             $item->stock_item -= $tot_borrow;
-            $borrow->status = 0;
+            
 
             $item->save();
 
@@ -71,11 +77,9 @@ class BorrowitemController extends Controller
 
     public function verified($id)
     {
-        // $borrow = Borrow::whereId($id)->first();
-        // $item = Item::whereId($borrow->id_item)->first();
-        // $item->stock_item -= $borrow->total_borrow;
         Borrow::where('id', $id)->update([
-            'status' => 1
+            'status' => 1,
+            'created_at' => date('Y-m-d H:i:s')
         ]);
         \Session::flash('sukses', 'Data Berhasil di Verifikasi');
         return redirect('/Borrows');
@@ -94,11 +98,20 @@ class BorrowitemController extends Controller
 
         //merubah status pinjam menjadi dikembalikan
         $borrow->status = '2';
+        $borrow->updated_at = date('Y-m-d H:i:s');
 
         //save edit items dan borrows
         $borrow->save();
         $item->save();
-        \Session::flash('sukses', 'Barang Berhasil Di Kemablikan');
+        \Session::flash('sukses', 'Barang Berhasil Di Kembalikan');
         return back();
+    }
+    public function lost($id){
+        Borrow::where('id', $id)->update([
+            'status' => 3,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        \Session::flash('sukses', 'Data Hilang Berhasil di Simpan');
+        return redirect('/Borrows');
     }
 }

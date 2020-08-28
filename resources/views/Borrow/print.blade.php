@@ -53,10 +53,14 @@
                   <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
                   @endif
 
+                  @if($a->status == 3)
+                  <td><label class="label label-danger">Barang Hilang</label></td>
+                  @endif
+
                   <td>{{$a->created_at}}</td>
                   <td>{{$a->updated_at}}</td>
 
-                  <td>{{$a->name}}</td>
+                  <td>{{$a->licensor}}</td>
 
 
                 </tr>

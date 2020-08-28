@@ -35,7 +35,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($data as $e=>$a)
+                @foreach($history as $e=>$a)
 
                 <tr>
                   <td>{{$e+1}}</td>
@@ -51,6 +51,10 @@
                   @if($a->status == 1)
                   <td><label class="label label-success">Sedang Di Pinjam</label></td>
                   @endif
+                  
+                  @if($a->status == 3)
+                  <td><label class="label label-danger">Barang Hilang</label></td>
+                  @endif
 
                   @if($a->status == 2)
                   <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
@@ -59,7 +63,7 @@
                   <td>{{$a->created_at}}</td>
 
 
-                  <td>{{$a->name}}</td>
+                  <td>{{$a->licensor}}</td>
 
 
                 </tr>

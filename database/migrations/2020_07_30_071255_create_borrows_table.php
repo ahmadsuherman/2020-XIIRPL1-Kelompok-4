@@ -16,14 +16,16 @@ class CreateBorrowsTable extends Migration
         Schema::create('borrows', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('licensor_id')->unsigned();
             $table->integer('id_item')->unsigned();
             $table->integer('total_borrow');
-            $table->integer('status')->nullable();
+            $table->tinyinteger('status');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('id_item')->references('id')->on('items')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('licensor_id')->references('id')->on('licensors')->onDelete('cascade');  
            
   
         });

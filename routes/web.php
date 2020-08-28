@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 	Route::get('/print', 'BorrowController@print');
 
 	Route::get('/Borrows/{id}/verified', 'BorrowitemController@verified');
+	Route::get('/lost/{id}', 'BorrowitemController@lost');
 });
 
 

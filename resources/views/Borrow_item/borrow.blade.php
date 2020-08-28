@@ -27,17 +27,21 @@
               <input type="text" name="stock_item" readonly="" value="{{$items->stock_item}}" class="form-control">
             </div>
 
-            @foreach($joins as $join)
             <div class="form-group">
               <label for="exampleInputEmail1">ATAS IZIN</label>
-              <input type="text" name="licensor_id" readonly="" value="{{$join->name}}" class="form-control">
+              <select type="text" name="licensor_id" class="form-control select">
+                @foreach($licensors as $licensor)
+                <option value="{{ $licensor->id }}">{{$licensor->name}}</option>
+                @endforeach
+              </select> 
             </div>
-            @endforeach
 
             <div class="form-group">
-              <label for="exampleInputEmail1">JUMLAH PINJAAM</label>
+              <label for="exampleInputEmail1">JUMLAH PINJAM</label>
               <input type="number" name="total_borrow" class="form-control" placeholder="Jumlah Barang" required="" min="1">
             </div>
+
+            <input type="hidden" value="0" name="status">
 
             <button type="submit" class="btn btn-primary">Pinjam</button>
           </div>

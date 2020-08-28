@@ -15,14 +15,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('licensor_id')->unsigned();
             $table->string('item_name',255);
             $table->integer('total_item');
             $table->integer('stock_item');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('licensor_id')->references('id')->on('licensors')->onDelete('cascade');
+            
 
 
         });

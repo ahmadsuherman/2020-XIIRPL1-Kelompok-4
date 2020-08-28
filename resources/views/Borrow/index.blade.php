@@ -32,7 +32,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($tampil as $e=>$a)
+              @foreach($borrows as $e=>$a)
               @if(auth()->user()->id == $a->user_id OR auth()->user()->role == 'admin')
               
               <tr>
@@ -44,7 +44,7 @@
                 <td>{{$a->item_name}}</td>
                 <td>{{$a->total_borrow}}</td>
 
-                @if($a->status == NULL)
+                @if($a->status == 0)
                 <td><label class="label label-warning">Menunggu Verifikasi</label></td>
                 @endif
 
@@ -56,24 +56,30 @@
                 <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
                 @endif
 
+                @if($a->status == 3)
+                <td><label class="label label-danger">Barang Hilang</label></td>
+                @endif
+
                 <td>{{$a->created_at}}</td>
-                <td>{{$a->name}}</td>
+                <td>{{$a->licensor}}</td>
 
                 <td>
                   @if(auth()->user()->role == 'admin')
-                  @if($a->status == NULL)
-                  <a href="Borrows/{{$a->id}}/verified" class="btn btn-primary">Verifikasi</a>
-
-
+                  @if($a->status == 0)
+                  <a href="Borrows/{{$a->borrow_id}}/verified" class="btn btn-primary">Verifikasi</a>
 
                   @elseif($a->status == 1)
                   <a href="restore/{{$a->borrow_id}}" class="btn btn-warning">Kembalikan</a>
+                  <a href="lost/{{$a->borrow_id}}" class="btn btn-info">Hilang</a>
                   @else
+
                   @endif
+
                   @endif
 
                   @if(auth()->user()->role == 'siswa' AND $a->status == 1)
                   <a href="restore/{{$a->borrow_id}}" class="btn btn-warning">Kembalikan</a>
+
                   @endif
 
 

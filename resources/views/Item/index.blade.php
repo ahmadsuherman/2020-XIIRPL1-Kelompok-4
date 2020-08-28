@@ -24,22 +24,20 @@
                 <th>NAMA BARANG</th>
                 <th>JUMLAH BARANG</th>
                 <th>STOK BARANG</th>
-                <th>PERZINAN</th>
                 <th>ACTION</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($joins as $e=>$join)
+              @foreach($items as $e=>$item)
               <tr>
                 <td>{{$e+1}}</td>
-                <td>{{$join->item_name}}</td>
-                <td>{{$join->total_item}}</td>
-                <td>{{$join->stock_item}}</td>
-                <td>{{$join->name}}</td>
+                <td>{{$item->item_name}}</td>
+                <td>{{$item->total_item}}</td>
+                <td>{{$item->stock_item}}</td>
                 <td>
-                  <a href="/items/{{$join->id}}/edit" class="btn btn-primary btn-sm btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
-                  <button href="/items/{{$join->id}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
-                  <!-- <a href="Items/show/{{$join->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-eye"></i></a> -->
+                  <a href="/items/{{$item->id}}/edit" class="btn btn-primary btn-sm btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                  <button href="/items/{{$item->id}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                  <!-- <a href="Items/show/{{$item->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-eye"></i></a> -->
 
 
                 </td>
@@ -82,17 +80,6 @@
                   <label for="exampleInputFile">MASUKAN GAMBAR</label>
                   <input type="file" name="image" id="exampleInputFile">
                 </div> -->
-
-                       <div class="form-group">
-                        <label for="exampleInputEmail1">ATAS IZIN</label>
-                        <select type="text" name="licensor_id" class="form-control select">
-                          @foreach($licensors as $licensor)
-                          <option value="{{ $licensor->id }}">{{$licensor->name}}</option>
-                          @endforeach
-                        </select> 
-                      </div>
-
-
 
                       <div class="form-group">
                         <label for="exampleInputPassword1">JUMLAH BARANG</label>

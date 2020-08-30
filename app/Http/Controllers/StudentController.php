@@ -24,6 +24,7 @@ class StudentController extends Controller
 
     $users = User::join('students', 'users.id', '=', 'students.user_id')->select(
         'users.*',
+        'users.id as id_user',
         'students.*')->get();
 
     return view('Student.index', ['users' => $users]);

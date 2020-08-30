@@ -40,9 +40,9 @@ class BorrowitemController extends Controller
     {
 
         // $this->validate($request,[
-        //     'jml_pinjam' => 'required',
+        //     'licensor' => 'required',
+        //     'jml_pinjam' => 'required'      
         // ]);
-        // dd($request);
 
         $item = Item::whereId($id)->first();
         $stock = $item->stock_item;
@@ -62,9 +62,7 @@ class BorrowitemController extends Controller
             $borrow->status = $request->status;
             $borrow->save();
 
-            $item->stock_item -= $tot_borrow;
-            
-
+            // $item->stock_item -= $tot_borrow;
             $item->save();
 
 
@@ -77,10 +75,31 @@ class BorrowitemController extends Controller
 
     public function verified($id)
     {
-        Borrow::where('id', $id)->update([
-            'status' => 1,
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
+
+        $borrow = Borrow::whereId($id)->first();
+        $id_item = $borrow->id_item;
+        $total_borrow = $borrow->total_borrow;
+        $borrow->save();
+
+        $item = Item::whereId($id_item)->first();
+        $stock = $item->stock_item;
+        $item->save();
+
+        $now_stock = $stock -= $total_borrow;
+        if ($now_stock < 0) {
+            \Session::flash('gagal', 'Stock Barang Sudah Tidak ada');
+            return redirect()->back();
+        } else {
+            
+            Borrow::where('id', $id)->update([
+                'status' => 1,
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+
+            Item::where('id',$id_item)->update([
+                'stock_item' => $now_stock
+            ]);            
+        }
         \Session::flash('sukses', 'Data Berhasil di Verifikasi');
         return redirect('/Borrows');
 

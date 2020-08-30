@@ -27,66 +27,65 @@
                 <th>Status</th>
                 <th>Tanggal Pinjam</th>
                 <th>Perizinan</th>
-
+                @if(auth()->user()->role == 'admin')
                 <th>ACTION</th>
+                @endif
               </tr>
             </thead>
             <tbody>
-              @foreach($borrows as $e=>$a)
-              @if(auth()->user()->id == $a->user_id OR auth()->user()->role == 'admin')
+              @foreach($borrows as $e=>$borrow)
+              @if(auth()->user()->id == $borrow->user_id OR auth()->user()->role == 'admin')
               
               <tr>
+                @if($borrow->status != 2 AND $borrow->status != 3)
                 <td>{{$e+1}}</td>
                 <!-- @if(auth()->user()->role == 'admin')
-                        <td><a href="{{ url('history/'.$a->user_id) }}"><i class="fa fa-eye"></i></a></td>
+                        <td><a href="{{ url('history/'.$borrow->user_id) }}"><i class="fa fa-eye"></i></a></td>
                         @endif -->
-                <td>{{$a->username}}</td>
-                <td>{{$a->item_name}}</td>
-                <td>{{$a->total_borrow}}</td>
+                <td>{{$borrow->username}}</td>
+                <td>{{$borrow->item_name}}</td>
+                <td>{{$borrow->total_borrow}}</td>
 
-                @if($a->status == 0)
+                @if($borrow->status == 0)
                 <td><label class="label label-warning">Menunggu Verifikasi</label></td>
                 @endif
 
-                @if($a->status == 1)
+                @if($borrow->status == 1)
                 <td><label class="label label-success">Sedang Di Pinjam</label></td>
                 @endif
 
-                @if($a->status == 2)
+                @if($borrow->status == 2)
                 <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
                 @endif
 
-                @if($a->status == 3)
+                @if($borrow->status == 3)
                 <td><label class="label label-danger">Barang Hilang</label></td>
                 @endif
 
-                <td>{{$a->created_at}}</td>
-                <td>{{$a->licensor}}</td>
+                <td>{{$borrow->created_at}}</td>
+                <td>{{$borrow->licensor}}</td>
 
                 <td>
                   @if(auth()->user()->role == 'admin')
-                  @if($a->status == 0)
-                  <a href="Borrows/{{$a->borrow_id}}/verified" class="btn btn-primary">Verifikasi</a>
+                  @if($borrow->status == 0)
+                  <a href="Borrows/{{$borrow->borrow_id}}/verified" class="btn btn-primary">Verifikasi</a>
 
-                  @elseif($a->status == 1)
-                  <a href="restore/{{$a->borrow_id}}" class="btn btn-warning">Kembalikan</a>
-                  <a href="lost/{{$a->borrow_id}}" class="btn btn-info">Hilang</a>
+                  @elseif($borrow->status == 1)
+                  <a href="restore/{{$borrow->borrow_id}}" class="btn btn-warning">Kembalikan</a>
+                  <a href="lost/{{$borrow->borrow_id}}" class="btn btn-info">Hilang</a>
                   @else
 
                   @endif
 
                   @endif
 
-                  @if(auth()->user()->role == 'siswa' AND $a->status == 1)
-                  <a href="restore/{{$a->borrow_id}}" class="btn btn-warning">Kembalikan</a>
-
-                  @endif
-
-
                   @if(auth()->user()->role == 'admin')
-                  <button href="/Borrow/{{$a->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
+                    @if($borrow->status != 1)
+                  <button href="/Borrow/{{$borrow->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
+                    @endif
                   @endif
                 </td>
+                @endif
               </tr>
            
               @endif

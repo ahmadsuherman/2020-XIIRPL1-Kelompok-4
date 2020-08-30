@@ -74,8 +74,7 @@ Route::get('/licensor', 'LicensorController@index');
 
 
 
-
-
+Route::delete('/allDeleted/{$id}', 'BorrowController@deleted_all');
 
 
 // Route::get('/history/{id}','BorrowController@history');

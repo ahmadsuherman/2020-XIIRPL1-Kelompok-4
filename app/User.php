@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     // public function borrows()
     // {
-    //     return $this->belongsToMany('Borrow');
+    //     return $this->belongsToOne('Borrow');
     // }
 
     use Notifiable;

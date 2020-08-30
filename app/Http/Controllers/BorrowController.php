@@ -30,9 +30,6 @@ class BorrowController extends Controller
       )->get();
 
     return view('Borrow.index',['borrows' => $borrows]);
-    //  $borrows = Borrow::all();
-    //  $items = Item::all();
-    // return view('Borrow.index',['borrows' => $borrows, 'items' => $items]);
   }
 
   public function borrowItem($id)

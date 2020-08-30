@@ -41,7 +41,7 @@
         <div class="modal-content bg-gradient-danger">
  
           <div class="modal-header">
-            <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+            <h6 class="modal-title" id="modal-title-notification">Mohon! Perhatikan</h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>

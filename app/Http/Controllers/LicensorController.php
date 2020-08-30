@@ -16,7 +16,7 @@ class LicensorController extends Controller
     }
     public function store(Request $request){
         $this->validate($request,[
-            'name'          => 'required',
+            'name'          => 'required|unique:licensors,name',
             'phone_number'  => 'required',
             'address'       => 'required'
         ]);

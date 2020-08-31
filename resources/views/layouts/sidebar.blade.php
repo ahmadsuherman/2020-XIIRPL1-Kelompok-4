@@ -47,6 +47,7 @@
         <li class="header"></li>
         <li class="menu-sidebar"><a href="/logout"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li>
 
+        <li class="menu-sidebar"><a href="/borrows/trash"><i class="fa fa-history"></i><span> History</span></a></li>
 
       </ul>
     </section>

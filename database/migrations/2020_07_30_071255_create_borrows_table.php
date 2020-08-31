@@ -20,6 +20,8 @@ class CreateBorrowsTable extends Migration
             $table->integer('id_item')->unsigned();
             $table->integer('total_borrow');
             $table->tinyinteger('status');
+            $table->dateTime('date_borrow')->nullable();
+            $table->dateTime('date_return')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

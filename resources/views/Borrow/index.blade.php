@@ -62,7 +62,7 @@
                 <td><label class="label label-danger">Barang Hilang</label></td>
                 @endif
 
-                <td>{{$borrow->created_at}}</td>
+                <td>{{$borrow->date_borrow}}</td>
                 <td>{{$borrow->licensor}}</td>
 
                 <td>

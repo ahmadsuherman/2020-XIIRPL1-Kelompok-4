@@ -57,8 +57,8 @@
                   <td><label class="label label-danger">Barang Hilang</label></td>
                   @endif
 
-                  <td>{{$a->created_at}}</td>
-                  <td>{{$a->updated_at}}</td>
+                  <td>{{$a->date_borrow}}</td>
+                  <td>{{$a->date_return}}</td>
 
                   <td>{{$a->licensor}}</td>
 

@@ -93,7 +93,7 @@ class BorrowitemController extends Controller
             
             Borrow::where('id', $id)->update([
                 'status' => 1,
-                'created_at' => date('Y-m-d H:i:s')
+                'date_borrow' => date('Y-m-d H:i:s')
             ]);
 
             Item::where('id',$id_item)->update([
@@ -117,7 +117,7 @@ class BorrowitemController extends Controller
 
         //merubah status pinjam menjadi dikembalikan
         $borrow->status = '2';
-        $borrow->updated_at = date('Y-m-d H:i:s');
+        $borrow->date_return = date('Y-m-d H:i:s');
 
         //save edit items dan borrows
         $borrow->save();

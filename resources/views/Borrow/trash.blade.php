@@ -9,7 +9,7 @@
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                    <button class="btn btn-sm btn-flat btn-success btn-filter"><i class="fa fa-filter"></i> Filter</button>
+                    <button class="btn btn-sm btn-flat btn-success btn-filter"><i class="fa fa-filter"></i> Cari</button>
                     
                 </p>
             </div>
@@ -53,10 +53,11 @@
                       <td><label class="label label-danger">Barang Hilang</label></td>
                       @endif
 
-                      <td>{{$trash->date_borrow}}</td>
-                       <td>{{$trash->date_return}}</td>
-
-                      <td>{{$trash->licensor}}</td>
+                      <td>{{ date('d M Y h:i:s', strtotime($trash->date_borrow )) }}</td>
+                       <td>{{ date('d M Y h:i:s', strtotime($trash->date_return )) }}</td>
+                      <!--  <td>{{ $trash->date_borrow }}</td>
+                       <td>{{ $trash->date_return }}</td>
+ -->                   <td>{{$trash->licensor}}</td>
 
 
                     </tr>
@@ -88,11 +89,11 @@
                 @csrf
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Tanggal-Bulan Pinjam</label>
+                  <label for="exampleInputEmail1">Dari Tanggal-Bulan Pinjam</label>
                   <input type="text" name="date_borrow" class="form-control datepicker" autocomplete="off" id="exampleInputEmail1" value="{{ $date_borrow }}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Tanggal-Bulan Pinjam</label>
+                  <label for="exampleInputPassword1">Ke Tanggal-Bulan Pinjam</label>
                   <input type="text" name="date_return" class="form-control datepicker" autocomplete="off" id="exampleInputPassword1" value="{{ $date_return }}">
                 </div>
               </div>

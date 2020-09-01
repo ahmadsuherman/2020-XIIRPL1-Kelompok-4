@@ -27,18 +27,23 @@
               <img src="{{url('img\mahaputra.jpg')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Mahaputra</span>
             </a>
+          </li>
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa  fa-key"></i>
+              <span class="label label-warning"></span>
+            </a>
             <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-red"></i> Ganti Password
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <!-- Menu Body -->
-              
             </ul>
           </li>
       

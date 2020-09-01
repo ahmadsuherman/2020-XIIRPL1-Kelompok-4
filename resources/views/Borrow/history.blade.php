@@ -78,8 +78,8 @@ $list = mysqli_query($conn,$sql);
                   <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
                   @endif
 
-                  <td>{{$a->date_borrow}}</td>
-                  <td>{{$a->date_return}}</td>
+                  <td>{{ date('d M Y h:i:s', strtotime($a->date_borrow)) }}</td>
+                  <td>{{ date('d M Y h:i:s', strtotime($a->date_return)) }}</td>
 
                   <td>{{$a->licensor}}</td>
 

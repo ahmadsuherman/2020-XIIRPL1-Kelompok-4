@@ -16,11 +16,6 @@ class StudentController extends Controller
 
     public function index()
     {
-    //     $tampil = Student::join('users', 'students.user_id', '=', 'users.id')->select(
-    //     'users.*',
-    //     'students.*')->get();
-
-    // return view('Student.index', ['tampil' => $tampil]);
 
     $users = User::join('students', 'users.id', '=', 'students.user_id')->select(
         'users.*',
@@ -29,8 +24,6 @@ class StudentController extends Controller
 
     return view('Student.index', ['users' => $users]);
 
-        // $students = Student::get();
-        // return view('Student.index', compact('students'));
     }
 
     public function create()
@@ -42,7 +35,7 @@ class StudentController extends Controller
     {
         $this->validate($request, [
             'name'     => 'required',
-            'nis'       => 'required',  
+            'nis'       => 'required|unique:students|max:20',  
             'email'     => 'required|unique:users|max:255',
             'gender'    => 'required',
             'class'     => 'required'
@@ -64,7 +57,7 @@ class StudentController extends Controller
         $siswa = Student::create($request->all());
 
         \Session::flash('sukses', 'Data Siswa Berhasil di tambahkan');
-        return redirect('/Students');
+        return redirect('/students');
     }
     public function destroy($id)
     {
@@ -74,6 +67,6 @@ class StudentController extends Controller
         } catch (Exception $e) {
             \Session::flash('gagal', $e->getMessage());
         }
-        return redirect('/Students');
+        return redirect('/students');
     }
 }

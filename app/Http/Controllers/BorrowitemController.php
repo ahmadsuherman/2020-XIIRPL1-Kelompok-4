@@ -51,7 +51,7 @@ class BorrowitemController extends Controller
 
         if ($stock == 0) {
             \Session::flash('gagal', 'Stok Sudah Habis');
-            return redirect('/Borrow_item');
+            return redirect('/borrow_item');
         } elseif ($stock > $tot_borrow or $stock == $tot_borrow) {
 
             $borrow = new Borrow(); // input data baru
@@ -66,10 +66,10 @@ class BorrowitemController extends Controller
             $item->save();
 
 
-            return redirect('/Borrows')->with('sukses', 'Data berhasil');
+            return redirect('/borrows')->with('sukses', 'Data berhasil');
         } else {
             \Session::flash('gagal', 'Jumlah Pinjam Lebih Dari Stok');
-            return redirect('/Borrow_item');    
+            return redirect('/borrow_item');    
         }
     }
 
@@ -101,7 +101,7 @@ class BorrowitemController extends Controller
             ]);            
         }
         \Session::flash('sukses', 'Data Berhasil di Verifikasi');
-        return redirect('/Borrows');
+        return redirect('/borrows');
 
     }
     public function restore($id)
@@ -131,6 +131,6 @@ class BorrowitemController extends Controller
             'created_at' => date('Y-m-d H:i:s')
         ]);
         \Session::flash('sukses', 'Data Hilang Berhasil di Simpan');
-        return redirect('/Borrows');
+        return redirect('/borrows');
     }
 }

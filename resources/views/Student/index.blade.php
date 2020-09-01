@@ -10,7 +10,7 @@
       <div class="box-header">
         <p>
           <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-          <button type="button" class="btn btn-sm btn-flat btn-primary btn-success" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Tambah Siswa
+          <button type="button" class="btn btn-sm btn-flat btn-primary btn-success" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-user-plus"></i> Tambah Siswa
           </button>
 
         </p>
@@ -37,7 +37,7 @@
                 <td>{{$user->gender}}</td>
                 <td>{{$user->class}}</td>
                 <td>
-                  <button href="/Students/{{$user->id_user}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                  <button href="/students/{{$user->id_user}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
                 </td>
         </div>
         </td>
@@ -59,7 +59,7 @@
               </div>
               <div class="modal-body">
               
-                <form role="form" action="{{ ('/Students')}}" method="post">
+                <form role="form" action="{{ ('/students')}}" method="post">
                   @csrf
                   <div class="box-body">
                     @if ($errors->any())

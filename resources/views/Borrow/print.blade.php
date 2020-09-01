@@ -57,8 +57,8 @@
                   <td><label class="label label-danger">Barang Hilang</label></td>
                   @endif
 
-                  <td>{{$a->date_borrow}}</td>
-                  <td>{{$a->date_return}}</td>
+                  <td>{{ date('d M Y h:i:s', strtotime($a->date_borrow)) }}</td>
+                  <td>{{ date('d M Y h:i:s', strtotime($a->date_return)) }}</td>
 
                   <td>{{$a->licensor}}</td>
 

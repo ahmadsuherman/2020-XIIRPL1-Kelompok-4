@@ -39,7 +39,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'item_name'     => 'required',
+            'item_name'     => 'required|unique:items',
             'total_item'    => 'required',
         ]);
 
@@ -90,35 +90,26 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'total_item' => 'required',
-            'stock_item' => 'required',
-
+            'total_item' => 'required'
         ]);
 
 
-        $item = Item::whereId($id)->first();
-        $total_item = $request->input('total_item');
-        $stock_item = $request->input('stock_item');
+        $items = Item::whereId($id)->first();
 
+        if ($items->total_item == $items->stock_item) {
 
-        if ($total_item < $stock_item) {
-            \Session::flash('gagal', 'Jumlah stock tidak boleh melebihi jumlah barang');
-            return redirect()->back();
-        } elseif ($total_item > $stock_item or $total_item == $stock_item) {
-            $items = Item::find($id);
             $items->item_name = $request->item_name;
-            $items->total_item = $request->total_item;
-            $items->stock_item = $request->stock_item;
-
+            $items->total_item = $request->total_item;      
+            $total = $request->input('total_item');
+            $items->total_item = $total;
+            $items->stock_item = $total;
             $items->update();
-            \Session::flash('sukses', 'Data berhasil di edit');
-
-
-            return redirect('/items');
+            \Session::flash('sukses', 'Data berhasil di Tambahkan');
         } else {
-            \Session::flash('gagal', 'Data gagal');
-            return redirect()->back();
+            \Session::flash('gagal', 'Barang Tidak dapat di edit');
         }
+
+        return redirect('/items');
     }
 
     /**
@@ -130,8 +121,12 @@ class ItemController extends Controller
     public function destroy($id)
     {
         try {
-            Item::where('id', $id)->delete();
-
+            $items = Item::whereId($id)->first();
+            if ($items->total_item == $items->stock_item) {
+                Item::where('id', $id)->delete();
+            } else {
+                \Session::flash('gagal','Barang tidak dapat di Hapus');
+            }
             \Session::flash('sukses', 'Data berhasil dihapus');
         } catch (Exception $e) {
             \Session::flash('gagal', $e->getMessage());

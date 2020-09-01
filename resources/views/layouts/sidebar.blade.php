@@ -29,25 +29,23 @@
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li class="active"><a href="{{url('items')}}"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
-            <li><a href="{{url('Borrows')}}"><i class="fa fa-circle-o"></i> Daftar Peminjam </a></li>
+            <li class="active"><a href="{{url('/items')}}"><i class="fa fa-circle-o"></i> Daftar Barang</a></li>
+            <li><a href="{{url('/borrows')}}"><i class="fa fa-circle-o"></i> Daftar Peminjam </a></li>
             <li><a href="{{url('/restore')}}"><i class="fa fa-circle-o"></i> Daftar Pengembalian</a></li>
 
           </ul>
         </li>
 
-        <li class="menu-sidebar"><a href="{{ url('/Students') }}"><i class="fa  fa-child"></i> <span>Daftar siswa</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/students') }}"><i class="fa  fa-male"></i> <span>Daftar siswa</span></a></li>
         @endif
 
-        <li class="menu-sidebar"><a href="{{ url('/Borrow_item') }}"><i class="fa  fa-pencil-square-o"></i><span> Pinjam Barang</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/borrow_item') }}"><i class="fa  fa-pencil-square-o"></i><span> Pinjam Barang</span></a></li>
         @if(auth()->user()->role == 'siswa')
-         <li class="menu-sidebar"><a href="{{url('Borrows')}}"><i class="fa  fa-pencil-square-o"></i> <span> Daftar Peminjam</span></a></li>
+         <li class="menu-sidebar"><a href="{{url('/borrows')}}"><i class="fa  fa-pencil-square-o"></i> <span> Daftar Peminjam</span></a></li>
         @endif
 
         <li class="header"></li>
-        <li class="menu-sidebar"><a href="/logout"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li>
-
-        <li class="menu-sidebar"><a href="/borrows/trash"><i class="fa fa-history"></i><span> History</span></a></li>
-
+        <li class="menu-sidebar"><a href="{{ url ('/borrows/trash') }}"><i class="fa fa-history"></i><span> History</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li> 
       </ul>
     </section>

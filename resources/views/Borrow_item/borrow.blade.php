@@ -22,7 +22,7 @@
             </ul>
           </div>
           @endif
-        <form role="form" action="/Borrow_item/{{ $items->id }}/save" method="post">
+        <form role="form" action="/borrow_item/{{ $items->id }}/save" method="post">
           @csrf
           <div class="box-body">
             <div class="form-group">

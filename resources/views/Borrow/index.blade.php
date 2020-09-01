@@ -62,13 +62,13 @@
                 <td><label class="label label-danger">Barang Hilang</label></td>
                 @endif
 
-                <td>{{$borrow->date_borrow}}</td>
+                <td>{{ date('d M Y h:i:s', strtotime($borrow->date_borrow)) }}</td>
                 <td>{{$borrow->licensor}}</td>
 
                 <td>
                   @if(auth()->user()->role == 'admin')
                   @if($borrow->status == 0)
-                  <a href="Borrows/{{$borrow->borrow_id}}/verified" class="btn btn-primary">Verifikasi</a>
+                  <a href="borrows/{{$borrow->borrow_id}}/verified" class="btn btn-primary">Verifikasi</a>
 
                   @elseif($borrow->status == 1)
                   <a href="restore/{{$borrow->borrow_id}}" class="btn btn-warning">Kembalikan</a>
@@ -81,7 +81,7 @@
 
                   @if(auth()->user()->role == 'admin')
                     @if($borrow->status != 1)
-                  <button href="/Borrow/{{$borrow->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
+                  <button href="/borrow/{{$borrow->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
                     @endif
                   @endif
                 </td>

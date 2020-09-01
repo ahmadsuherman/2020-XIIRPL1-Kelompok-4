@@ -32,13 +32,6 @@ class BorrowController extends Controller
 
     return view('Borrow.index',['borrows' => $borrows]);
   }
-
-  public function borrowItem($id)
-  {
-    $items = Item::whereId($id)->first();
-    return view('Borrow.listborrow');
-  }
-
   public function destroy($id)
   {
     try {
@@ -48,7 +41,7 @@ class BorrowController extends Controller
     } catch (Exception $e) {
       \Session::flash('gagal', $e->getMessage());
     }
-    return redirect('Borrows');
+    return redirect('borrows');
   }
   public function history()
   {
@@ -92,18 +85,22 @@ class BorrowController extends Controller
           'users.name as username',
           'borrows.*',
           'licensors.name as licensor',
-          'borrows.id as borrow_id'
+          'borrows.id as borrows_id'
         )->get();
 
-      $date_borrow = date('Y-m-d', strtotime('-1 days'));
-      $date_return = date('Y-m-d');
+
+      $date_borrow = date('Y-m-d', strtotime('now'));
+      $date_return = date('Y-m-d', strtotime('+1 days'));
       return view('Borrow.trash', ['trashed' => $trashed ], compact('date_borrow', 'date_return'));
     }
+
+
+
     public function filter(Request $request){
       $date_borrow = date('Y-m-d', strtotime($request->date_borrow));
       $date_return = date('Y-m-d', strtotime($request->date_return));
 
-      $trashed = Borrow::onlyTrashed()->whereDate('date_borrow','>=',$date_borrow)->whereDate('updated_at','<=', $date_return)
+      $trashed = Borrow::onlyTrashed()->whereDate('date_borrow','>=',$date_borrow)->whereDate('date_borrow','<=', $date_return)
       ->join('users', 'borrows.user_id', '=', 'users.id')
       ->join('items', 'borrows.id_item', '=', 'items.id')
       ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')

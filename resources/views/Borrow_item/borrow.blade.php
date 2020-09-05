@@ -13,16 +13,16 @@
         </p>
       </div>
       <div class="box-body">
-         @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-          @endif
-        <form role="form" action="/borrow_item/{{ $items->id }}/save" method="post">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
+        <form role="form" action="{{ url('borrow_item/'.$items->id) }}" method="post">
           @csrf
           <div class="box-body">
             <div class="form-group">
@@ -42,7 +42,7 @@
                 @foreach($licensors as $licensor)
                 <option value="{{ $licensor->id }}">{{$licensor->name}}</option>
                 @endforeach
-              </select> 
+              </select>
             </div>
 
             <div class="form-group">

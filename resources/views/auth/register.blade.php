@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,150 +31,153 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 </head>
+
 <body class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>INVENTORY BARANG SMK MAHAPUTRA</b></a>
+  <div class="register-box">
+    <div class="register-logo">
+      <a href="../../index2.html"><b>INVENTORY BARANG SMK MAHAPUTRA</b></a>
+    </div>
+
+    <div class="register-box-body">
+      <p class="login-box-msg">Register pengguna baru</p>
+      <center><img src="img/mahaputra.jpg" width="30%" height="30%"></center><br>
+
+      <form method="POST" action="{{ route('register') }}">
+        @csrf
+
+        <div class="form-group has-feedback">
+          <input id="name" type="text" class="form-control" name="name" placeholder="Nama Lengkap">
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+          @error('name')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+
+        </div>
+
+
+        <div class="form-group has-feedback">
+          <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+          @error('email')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+
+        </div>
+
+        <div class="form-group has-feedback">
+          <input type="number" class="form-control nis" name="nis" placeholder="NIS">
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+          @error('nis')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+
+        </div>
+
+        <div class="form-group">
+          <select class="form-control" name="gender">
+            <option>Laki Laki</option>
+            <option>Perempuan</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <select class="form-control" name="class">
+            <option>X RPL</option>
+            <option>X MM 2</option>
+            <option>XI RPL</option>
+            <option>XI MM 1</option>
+            <option>XI MM 2</option>
+            <option>XII RPL 1</option>
+            <option>XII RPL 2</option>
+            <option>XII MM</option>
+
+          </select>
+        </div>
+
+        <div class="form-group has-feedback">
+          <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+          @error('password')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+
+        </div>
+
+        <div class="form-group has-feedback">
+          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
+          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-8 ">
+
+            <label><i>Sudah punya akun?</i>
+              @auth
+              <a href="{{ url('/home') }}">Home</a>
+              @else
+
+
+              @if (Route::has('login'))
+              <a href="{{ route('login') }}">Login</a>
+              @endif
+              @endauth
+            </label>
+
+          </div>
+        </div>
+
+        <div class="form-group row mb-0">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">
+              {{ __('Register') }}
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.form-box -->
   </div>
+  <!-- /.register-box -->
 
-  <div class="register-box-body">
-    <p class="login-box-msg">Register pengguna baru</p>
-    <center><img src="img/mahaputra.jpg" width="30%" height="30%"></center><br>
-
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                              <div class="form-group has-feedback">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="Nama Lengkap">
-                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                              </div>
+  <!-- jQuery 3 -->
+  <script src="adminlte/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- iCheck -->
+  <script src="adminlte/plugins/iCheck/icheck.min.js"></script>
 
 
-                              <div class="form-group has-feedback">                              
-                                <input id="email" type="email" class="form-control" name="email"  placeholder="Email">
-                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                              </div>
-
-                               <div class="form-group has-feedback">                              
-                                <input type="text" class="form-control nis" name="nis"  placeholder="NIS">
-                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-
-                                @error('nis')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                              </div>
-
-                              <div class="form-group">
-                                <select class="form-control" name="gender">
-                                  <option>Laki Laki</option>
-                                  <option>Perempuan</option>
-                                </select>
-                              </div>
-
-                              <div class="form-group">
-                              <select class="form-control" name="class">
-                                <option>X RPL</option>
-                                <option>X MM 2</option>
-                                <option>XI RPL</option>
-                                <option>XI MM 1</option>
-                                <option>XI MM 2</option>
-                                <option>XII RPL 1</option>
-                                <option>XII RPL 2</option>
-                                <option>XII MM</option>
-
-                              </select>
-                            </div>
-
-                              <div class="form-group has-feedback">                             
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
-                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                              </div>
-
-                              <div class="form-group has-feedback">                             
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
-                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                              </div>  
-
-                              <div class="row">
-                               <div class="col-xs-8 "> 
-                                
-                                    <label><i>Sudah punya akun?</i>
-                                       @auth
-                                                <a href="{{ url('/home') }}">Home</a>
-                                            @else
-                                               
-
-                                                @if (Route::has('login'))
-                                                    <a href="{{ route('login') }}">Login</a>
-                                                @endif
-                                            @endauth
-                                    </label>
-                               
-                                </div>
-                              </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-xs-12">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-  </div>
-  <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
-
-<!-- jQuery 3 -->
-<script src="adminlte/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="adminlte/plugins/iCheck/icheck.min.js"></script>
-
-
-<script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask') }}"></script>
-<script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.extensions') }}"></script>
-<script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.numeric.extensions') }}"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
+  <script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask') }}"></script>
+  <script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.extensions') }}"></script>
+  <script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.numeric.extensions') }}"></script>
+  <script>
+    $(function() {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+      });
     });
-  });
 
-   $(document).ready(function(){
-      $('.nis').mask('0000.00.000', {reverse: true});
-     });
-
-</script>
+    $(document).ready(function() {
+      $('.nis').mask('0000.00.000', {
+        reverse: true
+      });
+    });
+  </script>
 </body>
+
 </html>

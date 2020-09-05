@@ -26,14 +26,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($items as $e=>$item)
+                            @foreach($items as $e=>$item)
                             <tr>
                                 <td>{{$e+1}}</td>
                                 <td>{{$item->item_name}}</td>
                                 <td>{{$item->total_item}}</td>
                                 <td>{{$item->stock_item}}</td>
-                                <td>         
-                                    <a href="/borrow_item/{{$item->id}}/borrow" type="button" class="btn btn-sm btn-info">PINJAM</a>
+                                <td>
+                                    <a href="{{ url('borrow_item/'.$item->id)}}" type="button" class="btn btn-sm btn-info">PINJAM</a>
+
                                 </td>
                             </tr>
                             @endforeach

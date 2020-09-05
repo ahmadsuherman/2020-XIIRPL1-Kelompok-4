@@ -22,8 +22,8 @@
                         <th>Details</th>
                         @endif -->
                 <th>Nama Siswa</th>
+                <th>Kelas</th>
                 <th>Nama Barang</th>
-                <th>Kelas</th>       
                 <th>Jumlah Pinjam</th>
                 <th>Status</th>
                 <th>Tanggal Pinjam</th>
@@ -36,16 +36,16 @@
             <tbody>
               @foreach($borrows as $e=>$borrow)
               @if(auth()->user()->id == $borrow->user_id OR auth()->user()->role == 'admin')
-              
+
               <tr>
-                @if($borrow->status != 2 AND $borrow->status != 3 OR  auth()->user()->role == 'siswa')
+                @if($borrow->status != 2 AND $borrow->status != 3 OR auth()->user()->role == 'siswa')
                 <td>{{$e+1}}</td>
                 <!-- @if(auth()->user()->role == 'admin')
                         <td><a href="{{ url('history/'.$borrow->user_id) }}"><i class="fa fa-eye"></i></a></td>
                         @endif -->
                 <td>{{$borrow->username}}</td>
+                <td>{{$borrow->class}}</td>
                 <td>{{$borrow->item_name}}</td>
-                <td>{{$borrow->class}}</td>     
                 <td>{{$borrow->total_borrow}}</td>
 
                 @if($borrow->status == 0)
@@ -86,14 +86,14 @@
                   @endif
 
                   @if(auth()->user()->role == 'admin')
-                    @if($borrow->status != 1)
-                  <button href="/borrow/{{$borrow->id}}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
-                    @endif
+                  @if($borrow->status != 1)
+                  <button href="{{ url('borrow/'.$borrow->id) }}" class="btn btn-danger btn-hapus" id="delete">Hapus</button>
+                  @endif
                   @endif
                 </td>
                 @endif
               </tr>
-           
+
               @endif
               @endforeach
             </tbody>

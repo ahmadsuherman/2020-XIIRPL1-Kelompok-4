@@ -58,26 +58,26 @@
                 </center>
               </div>
               <div class="modal-body">
-              
+
                 <form role="form" action="{{ ('/students')}}" method="post">
                   @csrf
                   <div class="box-body">
                     @if ($errors->any())
-                      <div class="alert alert-danger">
-                        <ul>
-                          @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                          @endforeach
-                        </ul>
-                      </div>
-                      @endif
+                    <div class="alert alert-danger">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                    @endif
                     <div class="form-group">
                       <label for="exampleInputEmail1">NAMA SISWA</label>
                       <input type="text" name="name" class="form-control" placeholder="Nama Siswa">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">NIS</label>
-                      <input type="text" name="nis" class="form-control" placeholder="NIS">
+                      <input type="number" name="nis" class="form-control" placeholder="NIS">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">EMAIL</label>
@@ -93,23 +93,23 @@
 
                       </select>
                     </div>
-                      <div class="form-group">
-                        <label>KELAS</label>
-                        <select class="form-control" name="class">
-                          <option>X RPL</option>
-                          <option>X MM 2</option>
-                          <option>XI RPL</option>
-                          <option>XI MM 1</option>
-                          <option>XI MM 2</option>
-                          <option>XII RPL 1</option>
-                          <option>XII RPL 2</option>
-                          <option>XII MM</option>
+                    <div class="form-group">
+                      <label>KELAS</label>
+                      <select class="form-control" name="class">
+                        <option>X RPL</option>
+                        <option>X MM 2</option>
+                        <option>XI RPL</option>
+                        <option>XI MM 1</option>
+                        <option>XI MM 2</option>
+                        <option>XII RPL 1</option>
+                        <option>XII RPL 2</option>
+                        <option>XII MM</option>
 
-                        </select>
-                      </div>
-
-                      <button type="submit" class="btn btn-primary">Tambah</button>
+                      </select>
                     </div>
+
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                  </div>
                 </form>
               </div>
             </div>

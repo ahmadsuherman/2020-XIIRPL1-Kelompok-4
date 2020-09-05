@@ -31,17 +31,16 @@ class BorrowitemController extends Controller
 
         $licensors = Licensor::get();
         $joins = Borrow::join('licensors', 'borrows.licensor_id', '=', 'licensors.id')->select(
-        'licensors.*',
-        'borrows.*')->get();
+            'licensors.*',
+            'borrows.*'
+        )->get();
         return view('Borrow_item.borrow', compact('items'),  ['licensors' => $licensors]);
     }
 
     public function save(Request $request, $id)
     {
-
-        // $this->validate($request,[
-        //     'licensor' => 'required',
-        //     'jml_pinjam' => 'required'      
+        // $this->validate($request, [
+        //     'licensor' => 'required'
         // ]);
 
         $item = Item::whereId($id)->first();
@@ -69,7 +68,7 @@ class BorrowitemController extends Controller
             return redirect('/borrows')->with('sukses', 'Data berhasil');
         } else {
             \Session::flash('gagal', 'Jumlah Pinjam Lebih Dari Stok');
-            return redirect('/borrow_item');    
+            return redirect('/borrow_item');
         }
     }
 
@@ -90,19 +89,18 @@ class BorrowitemController extends Controller
             \Session::flash('gagal', 'Stock Barang Sudah Tidak ada');
             return redirect()->back();
         } else {
-            
+
             Borrow::where('id', $id)->update([
                 'status' => 1,
                 'date_borrow' => date('Y-m-d H:i:s')
             ]);
 
-            Item::where('id',$id_item)->update([
+            Item::where('id', $id_item)->update([
                 'stock_item' => $now_stock
-            ]);            
+            ]);
         }
         \Session::flash('sukses', 'Data Berhasil di Verifikasi');
         return redirect('/borrows');
-
     }
     public function restore($id)
     {
@@ -125,7 +123,8 @@ class BorrowitemController extends Controller
         \Session::flash('sukses', 'Barang Berhasil Di Kembalikan');
         return back();
     }
-    public function lost($id){
+    public function lost($id)
+    {
         Borrow::where('id', $id)->update([
             'status' => 3,
             'created_at' => date('Y-m-d H:i:s')

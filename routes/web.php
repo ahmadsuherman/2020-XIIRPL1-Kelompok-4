@@ -32,18 +32,18 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,siswa']], function () {
 	Route::get('/items', 'ItemController@index');
 	Route::get('/items/create', 'ItemController@create');
 	Route::post('/items', 'ItemController@store');
-	Route::get('/items/show/{id}', 'ItemController@show');
+	// Route::get('/items/show/{id}', 'ItemController@show');
 
-	Route::get('/items/{id}/edit', 'ItemController@edit');
-	Route::post('/items/{id}/update', 'ItemController@update');
+	Route::get('/items/{id}', 'ItemController@edit');
+	Route::post('/items/{id}', 'ItemController@update');
 	Route::delete('/items/{id}', 'ItemController@destroy');
 
 	Route::get('/borrows', 'BorrowController@index');
 	Route::delete('/borrow/{id}', 'BorrowController@destroy');
 
 	Route::get('/borrow_item', 'BorrowitemController@index');
-	Route::get('/borrow_item/{id}/borrow', 'BorrowitemController@borrow');
-	Route::post('/borrow_item/{id}/save', 'BorrowitemController@save');
+	Route::get('/borrow_item/{id}', 'BorrowitemController@borrow');
+	Route::post('/borrow_item/{id}', 'BorrowitemController@save');
 	Route::get('/restore/{id}', 'BorrowitemController@restore');
 });
 
@@ -64,40 +64,27 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 	Route::get('/licensor/create', 'LicensorController@create');
 	Route::post('/licensor/create', 'LicensorController@store');
 	Route::get('/licensor/{id}', 'LicensorController@edit');
-	Route::post('/licensor/{id}/update', 'LicensorController@update');
+	Route::post('/licensor/{id}', 'LicensorController@update');
 	Route::delete('/licensor/{id}', 'LicensorController@destroy');
 
 	Route::get('/borrows/trash', 'BorrowController@trash');
 	Route::get('/borrows/trash/filter', 'BorrowController@filter');
 
+	Route::post('all-delete', function (Request $request) {
 
-	// Route::delete('/allDeleted/{$id}', 'BorrowController@deleted_all');
-
-
-	// Route::delete('borrows/{id}', 'BorrowController@wew');
-	// Route::post('/all-delete', 'BorrowController@deleteAll');
-
-
-	Route::post('all-delete',function(Request $request) {
-
-		$conn = mysqli_connect("localhost","root","","inventory");
+		$conn = mysqli_connect("localhost", "root", "", "inventory");
 
 		$sql = "SELECT * from borrows";
 
-		$list = mysqli_query($conn,$sql);
+		$list = mysqli_query($conn, $sql);
 
-		if(isset($_POST)) {
+		if (isset($_POST)) {
 
-			foreach($_POST['id'] as $val) {
-				$sql = Borrow::where('id',$val)->delete();
-				mysqli_query($conn,$sql);
+			foreach ($_POST['id'] as $val) {
+				$sql = Borrow::where('id', $val)->delete();
+				mysqli_query($conn, $sql);
+			}
 		}
-	}
 		return redirect()->back();
-	 
 	});
 });
-
-
-
-

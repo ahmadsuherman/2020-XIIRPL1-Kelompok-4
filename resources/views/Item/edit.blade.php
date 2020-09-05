@@ -13,7 +13,7 @@
                 </p>
             </div>
             <div class="box-body">
-                <form role="form" action="/items/{{$items->id}}/update" method="post">
+                <form role="form" action="{{ url('items/'.$items->id) }}" method="post">
                     @csrf
 
                     @if ($errors->any())

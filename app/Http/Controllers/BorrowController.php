@@ -19,12 +19,14 @@ class BorrowController extends Controller
   public function index()
   {
     $borrows = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->leftjoin('students', 'users.id' ,'=', 'students.user_id' )
     ->join('items', 'borrows.id_item', '=', 'items.id')
     ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
     ->select(
         'items.*',
         'items.id as items_id',
         'users.name as username',
+        'students.class', 
         'borrows.*',
         'licensors.name as licensor',
         'borrows.id as borrow_id'
@@ -46,11 +48,13 @@ class BorrowController extends Controller
   public function history()
   {
      $history = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->leftjoin('students', 'users.id' ,'=', 'students.user_id' )
     ->join('items', 'borrows.id_item', '=', 'items.id')
     ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
     ->select(
         'items.*',
         'users.name as username',
+        'students.class',
         'borrows.*',
         'licensors.name as licensor',
         'borrows.id as borrow_id'
@@ -62,11 +66,13 @@ class BorrowController extends Controller
   public function print()
   {
      $data = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
+    ->leftjoin('students', 'users.id' ,'=', 'students.user_id')
     ->join('items', 'borrows.id_item', '=', 'items.id')
     ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
     ->select(
         'items.*',
         'users.name as username',
+        'students.class',
         'borrows.*',
         'licensors.name as licensor',
         'borrows.id as borrow_id'
@@ -78,15 +84,17 @@ class BorrowController extends Controller
     public function trash(){
       $trashed = Borrow::onlyTrashed()
       ->join('users', 'borrows.user_id', '=', 'users.id')
+      ->leftjoin('students', 'users.id' ,'=', 'students.user_id')
       ->join('items', 'borrows.id_item', '=', 'items.id')
       ->join('licensors', 'borrows.licensor_id', '=', 'licensors.id')
       ->select(
           'items.*',
           'users.name as username',
+          'students.class',
           'borrows.*',
           'licensors.name as licensor',
           'borrows.id as borrows_id'
-        )->get();
+        )->orderBy('date_borrow','asc')->get();
 
 
       $date_borrow = date('Y-m-d', strtotime('now'));
@@ -110,7 +118,7 @@ class BorrowController extends Controller
           'borrows.*',
           'licensors.name as licensor',
           'borrows.id as borrow_id'
-        )->get();
+        )->orderBy('date_borrow','asc')->get();
 
       return view('Borrow.trash', ['trashed' => $trashed ], compact('date_borrow', 'date_return'));
     }

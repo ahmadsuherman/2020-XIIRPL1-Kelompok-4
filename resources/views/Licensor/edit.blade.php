@@ -26,7 +26,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama</label>
-                  <input type="text" name="name" value="{{$dt->name}}" class="form-control">
+                  <input type="text" name="name" value="{{$dt->name}}" readonly="" class="form-control">
                 </div>
                 
                  <div class="form-group">

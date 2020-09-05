@@ -22,6 +22,7 @@
                   <th>NO</th>
 
                   <th>Nama Siswa</th>
+                  <th>Kelas</th>              
                   <th>Nama Barang</th>
                   <th>Jumlah Pinjam</th>
                   <th>Status</th>
@@ -38,6 +39,7 @@
                   <td>{{$e+1}}</td>
 
                   <td>{{$a->username}}</td>
+                  <td>{{$a->class}}</td>
                   <td>{{$a->item_name}}</td>
                   <td>{{$a->total_borrow}}</td>
 

@@ -9,7 +9,7 @@
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                    <button class="btn btn-sm btn-flat btn-success btn-filter"><i class="fa fa-filter"></i> Cari</button>
+                    <button class="btn btn-sm btn-flat btn-success btn-filter"><i class="fa  fa-search"></i> Cari</button>
                     
                 </p>
             </div>
@@ -20,6 +20,7 @@
                     <tr>
                       <th>NO</th>
                       <th>Nama Siswa</th>
+                      <th>Kelas</th>
                       <th>Nama Barang</th>
                       <th>Jumlah Pinjam</th>
                       <th>Status</th>
@@ -34,6 +35,8 @@
                     <tr>
                       <td>{{$e+1}}</td>
                       <td>{{$trash->username}}</td>
+                      <td>{{$trash->class}}</td>
+                      
                       <td>{{$trash->item_name}}</td>
                       <td>{{$trash->total_borrow}}</td>
 
@@ -53,11 +56,18 @@
                       <td><label class="label label-danger">Barang Hilang</label></td>
                       @endif
 
-                      <td>{{ date('d M Y h:i:s', strtotime($trash->date_borrow )) }}</td>
-                       <td>{{ date('d M Y h:i:s', strtotime($trash->date_return )) }}</td>
-                      <!--  <td>{{ $trash->date_borrow }}</td>
-                       <td>{{ $trash->date_return }}</td>
- -->                   <td>{{$trash->licensor}}</td>
+                      @if($trash->date_borrow == NULL)
+                      <td> - </td>
+                      @else
+                      <td>{{ date('d M Y H:i:s', strtotime($trash->date_borrow )) }}</td>
+                      @endif
+
+                      @if($trash->date_return == NULL)
+                      <td> - </td>
+                      @else
+                      <td>{{ date('d M Y H:i:s', strtotime($trash->date_return )) }}</td>
+                      @endif
+                      <td>{{$trash->licensor}}</td>
 
 
                     </tr>

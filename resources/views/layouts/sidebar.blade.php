@@ -41,11 +41,13 @@
 
         <li class="menu-sidebar"><a href="{{ url('/borrow_item') }}"><i class="fa  fa-pencil-square-o"></i><span> Pinjam Barang</span></a></li>
         @if(auth()->user()->role == 'siswa')
-         <li class="menu-sidebar"><a href="{{url('/borrows')}}"><i class="fa  fa-pencil-square-o"></i> <span> Daftar Peminjam</span></a></li>
+         <li class="menu-sidebar"><a href="{{url('/borrows')}}"><i class="fa   fa-list-alt"></i> <span> Daftar Peminjam</span></a></li>
         @endif
 
         <li class="header"></li>
+        @if(auth()->user()->role == 'admin')
         <li class="menu-sidebar"><a href="{{ url ('/borrows/trash') }}"><i class="fa fa-history"></i><span> History</span></a></li>
+        @endif
         <li class="menu-sidebar"><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i><span> Logout</span></a></li> 
       </ul>
     </section>

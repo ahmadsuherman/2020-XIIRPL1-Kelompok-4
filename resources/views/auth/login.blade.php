@@ -56,23 +56,14 @@
         <input type="password" name="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-
-
-
-
-
-
-
       <div class="row">
-
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label><i>Belum punya akun?</i>
                @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                       
-
+                                    
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif

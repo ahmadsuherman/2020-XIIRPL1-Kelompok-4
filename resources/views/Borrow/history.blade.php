@@ -40,11 +40,10 @@ $list = mysqli_query($conn,$sql);
                   <th>NO</th>
                   <td><input type="checkbox" id="selectall" class="checked" /></td>
                   <th>Nama Siswa</th>
+                  <th>Kelas</th>  
                   <th>Nama Barang</th>
                   <th>Jumlah Pinjam</th>
-                  
                   <th>Status</th>
-
                   <th>Tanggal Pinjam</th>
                   <th>Tanggal Kembali</th>
                   
@@ -59,6 +58,7 @@ $list = mysqli_query($conn,$sql);
                   <td>{{$e+1}}</td>
                   <td><input type="checkbox" onClick="checkbox_is_checked()" name="id[]" value="{{$a->id}}" class="check-all"></td>
                   <td>{{$a->username}}</td>
+                  <td>{{$a->class}}</td> 
                   <td>{{$a->item_name}}</td>
                   <td>{{$a->total_borrow}}</td>
 
@@ -78,9 +78,17 @@ $list = mysqli_query($conn,$sql);
                   <td><label class="label label-primary">Sudah Di Kembalikan</label></td>
                   @endif
 
-                  <td>{{ date('d M Y h:i:s', strtotime($a->date_borrow)) }}</td>
-                  <td>{{ date('d M Y h:i:s', strtotime($a->date_return)) }}</td>
+                  @if($a->date_borrow == NULL)
+                  <td> - </td>
+                  @else
+                  <td>{{ date('d M Y H:i:s', strtotime($a->date_borrow )) }}</td>
+                  @endif
 
+                  @if($a->date_return == NULL)
+                  <td> - </td>
+                  @else
+                  <td>{{ date('d M Y H:i:s', strtotime($a->date_return )) }}</td>
+                  @endif
                   <td>{{$a->licensor}}</td>
 
 

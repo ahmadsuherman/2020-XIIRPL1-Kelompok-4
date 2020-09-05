@@ -104,7 +104,7 @@ class ItemController extends Controller
             $items->total_item = $total;
             $items->stock_item = $total;
             $items->update();
-            \Session::flash('sukses', 'Data berhasil di Tambahkan');
+            \Session::flash('sukses', 'Data berhasil di Update');
         } else {
             \Session::flash('gagal', 'Barang Tidak dapat di edit');
         }

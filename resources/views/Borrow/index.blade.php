@@ -23,6 +23,7 @@
                         @endif -->
                 <th>Nama Siswa</th>
                 <th>Nama Barang</th>
+                <th>Kelas</th>       
                 <th>Jumlah Pinjam</th>
                 <th>Status</th>
                 <th>Tanggal Pinjam</th>
@@ -37,13 +38,14 @@
               @if(auth()->user()->id == $borrow->user_id OR auth()->user()->role == 'admin')
               
               <tr>
-                @if($borrow->status != 2 AND $borrow->status != 3)
+                @if($borrow->status != 2 AND $borrow->status != 3 OR  auth()->user()->role == 'siswa')
                 <td>{{$e+1}}</td>
                 <!-- @if(auth()->user()->role == 'admin')
                         <td><a href="{{ url('history/'.$borrow->user_id) }}"><i class="fa fa-eye"></i></a></td>
                         @endif -->
                 <td>{{$borrow->username}}</td>
                 <td>{{$borrow->item_name}}</td>
+                <td>{{$borrow->class}}</td>     
                 <td>{{$borrow->total_borrow}}</td>
 
                 @if($borrow->status == 0)
@@ -62,7 +64,11 @@
                 <td><label class="label label-danger">Barang Hilang</label></td>
                 @endif
 
-                <td>{{ date('d M Y h:i:s', strtotime($borrow->date_borrow)) }}</td>
+                @if($borrow->date_borrow == NULL)
+                <td> - </td>
+                @else
+                <td>{{ date('d M Y H:i:s', strtotime($borrow->date_borrow )) }}</td>
+                @endif
                 <td>{{$borrow->licensor}}</td>
 
                 <td>

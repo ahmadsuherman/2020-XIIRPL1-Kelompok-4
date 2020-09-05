@@ -18,6 +18,8 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="adminlte/plugins/iCheck/square/blue.css">
 
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -27,6 +29,7 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -67,8 +70,14 @@
                               </div>
 
                                <div class="form-group has-feedback">                              
-                                <input  type="text" class="form-control" name="nis"  placeholder="NIS">
+                                <input type="text" class="form-control nis" name="nis"  placeholder="NIS">
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                                @error('nis')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
 
                               </div>
 
@@ -148,6 +157,11 @@
 <script src="adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="adminlte/plugins/iCheck/icheck.min.js"></script>
+
+
+<script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask') }}"></script>
+<script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.extensions') }}"></script>
+<script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.numeric.extensions') }}"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -156,6 +170,11 @@
       increaseArea: '20%' /* optional */
     });
   });
+
+   $(document).ready(function(){
+      $('.nis').mask('0000.00.000', {reverse: true});
+     });
+
 </script>
 </body>
 </html>

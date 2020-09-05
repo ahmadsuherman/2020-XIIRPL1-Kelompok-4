@@ -37,7 +37,7 @@
                 <td>{{$user->gender}}</td>
                 <td>{{$user->class}}</td>
                 <td>
-                  <button href="/students/{{$user->id_user}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                  <button href="{{ url('students/'.$user->id_user)}}" class="btn btn-danger btn-sm btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
                 </td>
         </div>
         </td>

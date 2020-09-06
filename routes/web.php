@@ -70,21 +70,5 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 	Route::get('/borrows/trash', 'BorrowController@trash');
 	Route::get('/borrows/trash/filter', 'BorrowController@filter');
 
-	Route::post('all-delete', function (Request $request) {
-
-		$conn = mysqli_connect("localhost", "root", "", "inventory");
-
-		$sql = "SELECT * from borrows";
-
-		$list = mysqli_query($conn, $sql);
-
-		if (isset($_POST)) {
-
-			foreach ($_POST['id'] as $val) {
-				$sql = Borrow::where('id', $val)->delete();
-				mysqli_query($conn, $sql);
-			}
-		}
-		return redirect()->back();
-	});
+	Route::post('all-delete', 'BorrowController@allDeletes');
 });

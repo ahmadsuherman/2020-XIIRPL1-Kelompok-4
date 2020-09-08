@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 	Route::post('/students', 'StudentController@store');
 	Route::delete('/students/{id}', 'StudentController@destroy');
 
-	Route::get('/restore', 'BorrowController@history');
+	Route::get('/restore', 'BorrowController@listRestore');
 	Route::get('/print', 'BorrowController@print');
 
 	Route::get('/borrows/{id}/verified', 'BorrowitemController@verified');

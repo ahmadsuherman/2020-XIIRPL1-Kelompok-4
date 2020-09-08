@@ -32,13 +32,12 @@
                     <th>Status</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
-
                     <th>Perizinan</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($histories as $e=>$history)
-                  @if($history->status != 1)
+                  @if($history->status != 1 AND $history->status != 0)
 
                   <tr>
                     <td>{{$e+1}}</td>

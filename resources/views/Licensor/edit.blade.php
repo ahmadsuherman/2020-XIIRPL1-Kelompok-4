@@ -9,6 +9,7 @@
       <div class="box-header">
         <p>
           <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
+          <a href="{{ url('licensor') }}" class="btn btn-sm btn-flat btn-primary "><i class="fa fa-backward"></i> Back</a>
         </p>
       </div>
       <div class="box-body">

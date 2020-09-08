@@ -45,7 +45,7 @@ class BorrowController extends Controller
     }
     return redirect('borrows');
   }
-  public function history()
+  public function listRestore()
   {
     $histories = Borrow::join('users', 'borrows.user_id', '=', 'users.id')
       ->leftjoin('students', 'users.id', '=', 'students.user_id')
@@ -60,7 +60,7 @@ class BorrowController extends Controller
         'borrows.id as borrow_id'
       )->get();
 
-    return view('Borrow.history', ['histories' => $histories]);
+    return view('Borrow.restore', ['histories' => $histories]);
   }
 
   public function print()

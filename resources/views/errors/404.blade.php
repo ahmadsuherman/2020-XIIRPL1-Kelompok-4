@@ -1,7 +1,7 @@
 <html style="height: auto; min-height: 100%;"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | 404 Page not found</title>
+  <title>Inventory | 404 Page not found</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -33,14 +33,14 @@
     <!-- Main content -->
     <section class="content">
       <div class="error-page">
-        <h2 class="headline text-yellow"> 404</h2>
+        <h2 class="headline text-red"> 404</h2>
 
         <div class="error-content">
-          <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+          <h3><i class="fa fa-warning text-red"></i> Oops! Page not found.</h3>
 
           <p>
             Kami tidak dapat menemukan halaman yang Anda cari.
-            Sementara itu, Anda dapat <a href="{{ url('home') }}">kembali ke Home</a> atau mencoba menggunakan formulir pencarian yang belum.
+            Sementara itu, Anda dapat Kembali ke<a href="{{ url('home') }}">Home</a> dengan cara klik teks Home di samping kiri yang berwarna biru.
           </p>
 
           <!-- <form class="search-form">

@@ -12,9 +12,9 @@
          
         </div>
       </div>
-
+      
        <li class="header">MENU</li>
-
+       <li class="menu-sidebar"><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
         @if(auth()->user()->role == 'admin')
 

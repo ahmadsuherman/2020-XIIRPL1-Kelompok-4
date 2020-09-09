@@ -39,7 +39,7 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">ATAS IZIN</label>
-              <select type="text" name="licensor_id" class="form-control select">
+              <select type="text" name="licensor_id" required="" class="form-control select">
                 @foreach($licensors as $licensor)
                 <option value="{{ $licensor->id }}">{{$licensor->name}}</option>
                 @endforeach

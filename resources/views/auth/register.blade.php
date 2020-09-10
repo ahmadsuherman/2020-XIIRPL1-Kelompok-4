@@ -46,7 +46,7 @@
         @csrf
 
         <div class="form-group has-feedback">
-          <input id="name" type="text" class="form-control" name="name" placeholder="Nama Lengkap">
+          <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nama Lengkap">
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
           @error('name')
@@ -59,7 +59,7 @@
 
 
         <div class="form-group has-feedback">
-          <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+          <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
           @error('email')
@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-group has-feedback">
-          <input type="number" class="form-control nis" name="nis" placeholder="NIS">
+          <input type="number" class="form-control nis" name="nis" value="{{ old('nis') }}" placeholder="NIS">
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
           @error('nis')
